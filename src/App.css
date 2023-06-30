@@ -28,6 +28,14 @@
   color: #61dafb;
 }
 
+
+#myThreeJsCanvas {
+  width: 100vw;
+  outline: white;
+  position: fixed;
+  top: 0px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

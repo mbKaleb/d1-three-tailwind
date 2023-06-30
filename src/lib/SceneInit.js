@@ -2,8 +2,38 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module';
 
+class devCamera {
+  constructor(type) {
+    this.type = type
+
+    switch (this.type) {
+      case 1 : //Default 
+      this.x = 50
+      this.y = 20
+      this.z = 160
+        break;
+      case 2 : //Production Preview
+      this.x = 50
+      this.y = 0
+      this.z = 100
+        break;
+      default:
+        this.type = false;
+    }
+
+  }
+
+}
+
 export default class SceneInit {
+
   constructor(canvasId) {
+
+    // NOTE: Dev options
+    this.devCamera = new devCamera(1);
+    this.devControls = false;
+    this.devStats = false;
+
     // NOTE: Core components to initialize Three.js app.
     this.scene = undefined;
     this.camera = undefined;
@@ -27,13 +57,19 @@ export default class SceneInit {
 
   initialize() {
     this.scene = new THREE.Scene();
+
     this.camera = new THREE.PerspectiveCamera(
       this.fov,
       window.innerWidth / window.innerHeight,
-      1,
-      1000
+      this.nearPlane,
+      this.farPlane
     );
-    this.camera.position.z = 4;
+
+    if (this.devCamera.type){
+      this.camera.position.x = this.devCamera.x;
+      this.camera.position.y = this.devCamera.y;
+      this.camera.position.z = this.devCamera.z;
+    }
 
     // NOTE: Specify a canvas which is already created in the HTML.
     const canvas = document.getElementById(this.canvasId);
@@ -48,9 +84,8 @@ export default class SceneInit {
     document.body.appendChild(this.renderer.domElement);
 
     this.clock = new THREE.Clock();
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.stats = Stats();
-    document.body.appendChild(this.stats.dom);
+    if ( this.devControls === true ) this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    if ( this.devStats === true ) {this.stats = Stats(); document.body.appendChild(this.stats.dom);}
 
     // ambient light which is for the whole scene
     this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -63,12 +98,11 @@ export default class SceneInit {
     this.spotLight.position.set(0, 64, 32);
     this.scene.add(this.spotLight);
 
+    this.gridHelper = new THREE.GridHelper(200, 50);
+    this.scene.add(this.gridHelper);
+
     // if window resizes
     window.addEventListener('resize', () => this.onWindowResize(), false);
-
-    // NOTE: Load space background.
-    // this.loader = new THREE.TextureLoader();
-    // this.scene.background = this.loader.load('./pics/space.jpeg');
 
     // NOTE: Declare uniforms to pass into glsl shaders.
     this.uniforms = {
@@ -83,8 +117,8 @@ export default class SceneInit {
     // requestAnimationFrame(this.animate.bind(this));
     window.requestAnimationFrame(this.animate.bind(this));
     this.render();
-    this.stats.update();
-    this.controls.update();
+    this.devControls? this.controls.update() : undefined;
+    this.devStats? this.stats.update() : undefined;
   }
 
   render() {
