@@ -89,7 +89,8 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className='outline outline-black w-[100px] h-[50px]'>
+      <div>TEST</div>
       <canvas id="myThreeJsCanvas" />
     </div>
   );
