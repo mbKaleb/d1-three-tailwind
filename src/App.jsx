@@ -12,24 +12,32 @@ const tronDisk = "/models/tron_disk/scene.gltf";
 import SceneInit from './lib/SceneInit';
 
 //Utils for solving quadratics
-function solveForY(x) {
-  // Calculate the discriminant
-  let discriminant = Math.pow(-10, 2) - 4 * 0.8 * -(-2 * Math.pow(x, 2) + x + 5000);
-  if (discriminant < 100) {return 15}
-  
-  // Calculate the two possible solutions for y
-  let y1 = ((-(-10) + Math.sqrt(discriminant)) / (2 * 0.6));
-  
-  // Return the solutions
-  if (y1 > 0) {return y1} else return .1
+function solveForX(y) {
+  const a = -4;
+  const b = 10 + 1; // 10x and x terms combined
+  const c = 9500 - 1.5*y**2 + 10*y;
+
+  const discriminant = Math.pow(b, 2) - (4 * a * c);
+
+  if (discriminant < 0) {
+      return 'No real solutions';
+  } else {
+      const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+      const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+
+      return [x1, x2];
+  }
 }
+
+// console.log(solveForX(0));
+
 
 
 
 
 const basicRotation = (target) => {
   // loadedModel.scene.rotation.x += 0.01;
-  target.scene.rotation.y += 0.09;
+  target.scene.rotation.y += 0.03;
   // loadedModel.scene.rotation.z += 0.001;
 }
 
@@ -54,8 +62,13 @@ function App() {
     // 2500 - x^2 = y^2
     if(loadedModel){
 
-      let x = loadedModel.scene.position.x = currScrollPos / 40
-      let y = loadedModel.scene.position.z = 100 - solveForY(x);
+      //actual z = z - 100
+      let y = loadedModel.scene.position.z = currScrollPos / 50
+        let actualY = 82.9 -y
+      let x = loadedModel.scene.position.x = solveForX(actualY)[1];
+      // solveForX((-y+100))[1]
+      //actual x = actual x
+      console.log("y"+y,"x"+x)
 
       
     }
@@ -72,7 +85,7 @@ function App() {
     glftLoader.load(tronDisk, (gltfScene) => {
       loadedModel = gltfScene;
       gltfScene.scene.scale.set(0.05, 0.05, 0.05);
-      gltfScene.scene.rotation.x = 0.9
+      gltfScene.scene.rotation.x = 1.2
       mainScene.scene.add(gltfScene.scene);
     });
 
