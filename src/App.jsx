@@ -1,15 +1,12 @@
 import { useEffect } from 'react';
 
 import * as THREE from 'three';
-// import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
-// import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-// import { VOXLoader } from 'three/examples/jsm/loaders/VOXLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const tronDisk = "/models/tron_disk/scene.gltf";
-
 // @ts-ignore 
 import SceneInit from './lib/SceneInit';
+import AppContent from './AppContent';
 
 //Utils for solving quadratics
 function solveForX(y) {
@@ -36,15 +33,10 @@ function solveForX(y) {
 
 
 const basicRotation = (target) => {
-  // loadedModel.scene.rotation.x += 0.01;
-  target.scene.rotation.y += 0.03;
-  // loadedModel.scene.rotation.z += 0.001;
+  target.scene.rotation.y += 0.04;
 }
 
-
-
 function App() {
-
   const glftLoader = new GLTFLoader();
   let prevScrollPos = 0;
   let loadedModel;
@@ -55,22 +47,12 @@ function App() {
 
     if (scrollValue <= 0) {
       currScrollPos = Math.abs(scrollValue)
-
     }
 
-
-    // 2500 - x^2 = y^2
     if(loadedModel){
-
-      //actual z = z - 100
       let y = loadedModel.scene.position.z = currScrollPos / 50
         let actualY = 82.9 -y
-      let x = loadedModel.scene.position.x = solveForX(actualY)[1];
-      // solveForX((-y+100))[1]
-      //actual x = actual x
-      console.log("y"+y,"x"+x)
-
-      
+      let x = loadedModel.scene.position.x = solveForX(actualY)[1] +1;
     }
 
     prevScrollPos = currScrollPos;
@@ -85,13 +67,11 @@ function App() {
     glftLoader.load(tronDisk, (gltfScene) => {
       loadedModel = gltfScene;
       gltfScene.scene.scale.set(0.05, 0.05, 0.05);
-      gltfScene.scene.rotation.x = 1.2
+      gltfScene.scene.rotation.x = 1.4
       mainScene.scene.add(gltfScene.scene);
     });
 
-    //
-
-
+    //TRON DISK //////////////////////////////////////
 
 
     const animate = () => {
@@ -105,10 +85,11 @@ function App() {
     handleCamera(e)
   };
   
-  document.body.style.height = '1000vh';
+
   return (
     <div>
-      <canvas id="myThreeJsCanvas"  />
+      <canvas id="myThreeJsCanvas"/>
+      <AppContent />
     </div>
   );
 }
