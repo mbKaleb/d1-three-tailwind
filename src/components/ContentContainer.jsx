@@ -1,7 +1,7 @@
 
 function ContentContainer(props) {
   return (
-    <div className="h-[100vh] border-[64] snap-start">
+    <div className="h-[100vh] w-[100vw] mt-[25vh] border-[64px] snap-start">
         {props.children}
     </div>
   )

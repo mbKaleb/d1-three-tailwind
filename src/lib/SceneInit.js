@@ -31,7 +31,7 @@ export default class SceneInit {
 
     // NOTE: Dev options
     this.devCamera = new devCamera(2);
-    this.devControls = false;
+    this.devControls = true;
     this.devStats = false;
 
     // NOTE: Core components to initialize Three.js app.
@@ -76,7 +76,7 @@ export default class SceneInit {
     this.renderer = new THREE.WebGLRenderer({
       canvas,
       // NOTE: Anti-aliasing smooths out the edges.
-      alpha: true,
+      alpha: false,
       antialias: true,
 
     });

@@ -4,7 +4,7 @@ function AppContent() {
   return (
     <div 
         id="app-content" 
-        className="snap-mandatory snap-y overflow-y-auto outline w-[90vw] h-[100vh] bg-gray-100 z-500"
+        className="w-[100vw] h-[100vh] absolute top-0 z-10 outline overflow-y-auto snap-y snap-mandatory"
     >
         <ContentContainer >
             Test
@@ -12,6 +12,7 @@ function AppContent() {
         <ContentContainer >
             Test2
         </ContentContainer>
+        <ContentContainer />
     </div>
   )
 }
