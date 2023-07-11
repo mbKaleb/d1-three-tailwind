@@ -13,7 +13,7 @@ class devCamera {
       this.z = 160
         break;
       case 2 : //Production Preview
-      this.x = 50
+      this.x = 0
       this.y = 0
       this.z = 100
         break;
