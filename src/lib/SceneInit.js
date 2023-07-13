@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
 
 class devCamera {
   constructor(type) {
@@ -15,7 +18,12 @@ class devCamera {
       case 2 : //Production Preview
       this.x = 0
       this.y = 0
-      this.z = 100
+      this.z = 10
+        break;
+      case 3 : //Production Preview
+      this.x = 0
+      this.y = 5
+      this.z = 30
         break;
       default:
         this.type = false;
@@ -30,7 +38,7 @@ export default class SceneInit {
   constructor(canvasId) {
 
     // NOTE: Dev options
-    this.devCamera = new devCamera(2);
+    this.devCamera = new devCamera(3);
     this.devControls = true;
     this.devStats = false;
 
@@ -40,7 +48,7 @@ export default class SceneInit {
     this.renderer = undefined;
 
     // NOTE: Camera params;
-    this.fov = 90;
+    this.fov = 110;
     this.nearPlane = 1;
     this.farPlane = 1000;
     this.canvasId = canvasId;
@@ -80,6 +88,7 @@ export default class SceneInit {
       antialias: true,
 
     });
+    this.composer = new EffectComposer(this.renderer)
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.renderer.domElement);
 
