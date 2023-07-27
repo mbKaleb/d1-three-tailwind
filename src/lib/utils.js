@@ -1,6 +1,6 @@
 function solveForX(y, quadrant) {
   // Y must be in range from 83 - (-76)
-  console.log(y, quadrant)
+  // console.log(y, quadrant)
   if (y > 83){y = 83}
   const a = -4;
   const b = 10 + 1; // 10x and x terms combined
@@ -23,7 +23,7 @@ function solveForX(y, quadrant) {
 //Version 2 (-4x^{2}+(10000-1y^{2})=0)
 function solveQE(y, quadrant) {
   quadrant = quadrant%5
-  console.log(quadrant)
+  // console.log(quadrant)
 
   if (y > 100) y = 100
   const a = -4;
