@@ -2,7 +2,7 @@ import ContentContainer from "./ContentContainer"
 
 function Item(props) {
   return (
-    <div className="text-white rounded hover:shadow-lg hover:ring-4 hover:ring-blue-300 hover:ring-opacity-50">
+    <div className="text-3xl text-white rounded drop-shadow-[2px_2px_5px_rgba(255,255,255,0.5)]  hover:drop-shadow-[-1px_1px_4px_rgba(99,253,254,1)] ">
       {props.children}
     </div>
   )
@@ -12,14 +12,14 @@ function AppContent() {
   return (
     <div 
         id="app-content" 
-        className="w-[100vw] h-[100vh] absolute top-0 z-10 outline overflow-y-auto snap-y snap-mandatory"
+        className="w-[100vw] h-[100vh] bg- absolute top-0 z-10 outline overflow-y-auto snap-y snap-mandatory"
     >
         <ContentContainer>
-          <div className="text-white text-2xl font-bold relative space-y-4  ">
+          <div className="text-black text-2xl font-bold relative space-y-4 ">
             <Item> Software Developer </Item> 
             <Item> Name: Kaleb Franken </Item>
-            <p> Education: BS In Cloud Computing @Purdue Global </p>
-            <p> Favorite Color: #0FFFFA </p>
+            {/* <p> Education: BS In Cloud Computing @Purdue Global </p>
+            <p> Favorite Color: #0FFFFA </p> */}
           </div>
         </ContentContainer>
         <ContentContainer >
