@@ -2,7 +2,7 @@ import ContentContainer from "./ContentContainer"
 
 function Item(props) {
   return (
-    <div className="text-3xl text-white rounded drop-shadow-[2px_2px_5px_rgba(255,255,255,0.5)]  hover:drop-shadow-[-1px_1px_4px_rgba(99,253,254,1)] ">
+    <div className="text-3xl text-gray-400 rounded hover:text-white  hover:drop-shadow-[0px_0px_10px_rgba(99,253,254,0.9)]  ">
       {props.children}
     </div>
   )
@@ -18,8 +18,8 @@ function AppContent() {
           <div className="text-black text-2xl font-bold relative space-y-4 ">
             <Item> Software Developer </Item> 
             <Item> Name: Kaleb Franken </Item>
-            {/* <p> Education: BS In Cloud Computing @Purdue Global </p>
-            <p> Favorite Color: #0FFFFA </p> */}
+            <Item> Education: BS In Cloud Computing @Purdue Global </Item>
+            <Item> Favorite Color: #0FFFFA </Item>
           </div>
         </ContentContainer>
         <ContentContainer >
