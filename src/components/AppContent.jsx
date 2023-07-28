@@ -2,7 +2,7 @@ import ContentContainer from "./ContentContainer"
 
 function Item(props) {
   return (
-    <div className="text-3xl text-gray-400 rounded hover:text-white  hover:drop-shadow-[0px_0px_10px_rgba(99,253,254,0.9)]  ">
+    <div className="text-3xl text-gray-400 rounded hover:text-white  hover:drop-shadow-[0px_0px_15px_rgba(99,253,254,0.9)]   ">
       {props.children}
     </div>
   )
