@@ -9,13 +9,23 @@ function Item(props) {
 }
 
 function AppContent() {
+  let windowTest = window.visualViewport
+  let docTest = null;
+
+
+
+  console.log(windowTest)
   return (
     <div 
         id="app-content" 
         className="w-[100vw] h-[100vh] bg- absolute top-0 z-10 outline overflow-y-auto snap-y snap-mandatory"
     >
         <ContentContainer>
-          <div className="text-black text-2xl font-bold relative space-y-4 ">
+          <div 
+            className="text-black text-2xl font-bold relative space-y-4 "
+            id="01"
+          >
+            
             <Item> Software Developer </Item> 
             <Item> Name: Kaleb Franken </Item>
             <Item> Education: BS In Cloud Computing @Purdue Global </Item>

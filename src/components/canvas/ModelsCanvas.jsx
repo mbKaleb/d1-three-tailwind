@@ -18,8 +18,8 @@ const getY = (scroll, ITEM_ID) => {
 
   if (yValue > 100){yValue = 100}
   if (yValue <= -100){yValue = -100}
-  console.log("yValue: "+ yValue)
-  console.log("scroll: "+scroll)
+  // console.log("yValue: "+ yValue)
+  // console.log("scroll: "+scroll)
   return yValue
 }
 
@@ -55,7 +55,7 @@ function ModelsCanvas(props) {
         const ITEM_ID = 1
         const SCROLLPOS = (currScrollPos/25);
         const quadrant = Math.floor(((SCROLLPOS/100)%4) + ITEM_ID);
-        console.log(quadrant)
+        // console.log(quadrant)
         const y = mapGridToCanvasY(getY(SCROLLPOS, ITEM_ID)) // - converts from grid to canvas grid
           loadedTronDisk.scene.position.z = y
         const x = loadedTronDisk.scene.position.x = solveQE(y, quadrant, ITEM_ID) - 50  // - converts from grid to canvas grid

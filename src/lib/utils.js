@@ -33,7 +33,7 @@ function solveQE(y, quadrant) {
   const discriminant = Math.pow(b, 2) - (4 * a * c);
 
   if (discriminant < 0) {
-    console.log('No real solutions');
+    // console.log('No real solutions');
     return null
   } else {
     const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
