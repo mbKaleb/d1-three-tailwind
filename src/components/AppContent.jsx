@@ -1,7 +1,7 @@
 import ContentContainer from "./ContentContainer"
 
 function Item({children, isActive}) {
-  const activeClass = "text-3xl text-white rounded drop-shadow-[0px_0px_15px_rgba(99,253,254,0.9)]"
+  const activeClass = "text-3xl text-white drop-shadow-[1px_1px_5px_rgba(99,244,244,1)]"
   const inactiveClass = "text-3xl text-gray-400 rounded"
 
   return (

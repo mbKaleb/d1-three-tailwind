@@ -8,7 +8,7 @@ const tronDisk3 = "/models/tron_disk3/scene.gltf";
 
 
 const basicRotation = (target) => {
-  target.scene.rotation.y += 0.01;
+  target.scene.rotation.y += 0.003;
   // target.scene.rotation.x += 0.01;
 }
 
@@ -84,14 +84,14 @@ function ModelsCanvas(props) {
     mainScene.animate();
 
     //TRON DISK //////////////////////////////////////
-    glftLoader.load(tronDisk, (gltfScene) => {
+    glftLoader.load(tronDisk3, (gltfScene) => {
       loadedTronDisk = gltfScene;
       gltfScene.scene
-      gltfScene.scene.scale.set(0.1, 0.1, 0.1);
+      gltfScene.scene.scale.set(6, 6, 6);
       // gltfScene.scene.rotation.y = 7
-      // gltfScene.scene.rotation.z = 1.6
-      gltfScene.scene.rotation.x = 1.55
-      gltfScene.scene.position.z = 100
+      // gltfScene.scene.rotation.z = 1.5
+      gltfScene.scene.rotation.x = 1.5
+      // gltfScene.scene.position.z = 1.5
 
       mainScene.scene.add(gltfScene.scene);
 
