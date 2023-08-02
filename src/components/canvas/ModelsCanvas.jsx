@@ -42,6 +42,7 @@ function ModelsCanvas(props) {
     
     let currScrollPos = 0
     let scrollValue = 0
+    const windowAdjustment = 2000
     
     const handleCamera = (ev) => { //Doesnt work lol
       if (appContext){
@@ -49,7 +50,7 @@ function ModelsCanvas(props) {
       }
       
       if (scrollValue <= 0) {
-        currScrollPos = Math.abs(scrollValue)
+        currScrollPos = (Math.abs(scrollValue) / (window.innerHeight/windowAdjustment))
       }
       
       if(loadedTronDisk){

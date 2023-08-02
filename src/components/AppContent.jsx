@@ -1,8 +1,8 @@
 import ContentContainer from "./ContentContainer"
 
-function Item({children, isActive}) {
-  const activeClass = "text-3xl text-white drop-shadow-[1px_1px_5px_rgba(99,244,244,1)]"
-  const inactiveClass = "text-3xl text-gray-400 rounded"
+function Item({children, isActive, className}) {
+  const activeClass = "text-4xl text-[#a4fcfb] drop-shadow-[0px_0px_8px_rgba(255,255,255,1)] " + className
+  const inactiveClass = "text-4xl text-gray-700 rounded " + className
 
   return (
     <div className={isActive? activeClass: inactiveClass}>
@@ -21,13 +21,13 @@ function AppContent() {
         <ContentContainer>{function(isActive) { 
           return (
             <div 
-              className="text-black text-2xl font-bold relative space-y-4 "
+              className="relative space-y-4"
               id="cont01"
             >
-              <Item isActive={isActive} > Software Developer </Item>
-              <Item isActive={isActive} > Name: Kaleb Franken </Item>
-              <Item isActive={isActive} > Education: BS In Cloud Computing @Purdue Global </Item>
-              <Item isActive={isActive} > Favorite Color: #0FFFFA </Item>
+              <Item isActive={isActive} className="pb-4"> Software Developer </Item>
+              <Item isActive={isActive} className="pl-4" > Name: Kaleb Franken </Item>
+              <Item isActive={isActive} className="pl-4" > Education: BS In Cloud Computing @Purdue Global </Item>
+              <Item isActive={isActive} className="pl-4" > Favorite Color: #0FFFFA </Item>
             </div>
             )
           }}
