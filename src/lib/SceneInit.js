@@ -18,7 +18,7 @@ class devCamera {
       case 2 : //Production Preview
       this.x = 0
       this.y = 0
-      this.z = 10
+      this.z = 30
         break;
       case 3 : //Production Preview
       this.x = 0
@@ -38,7 +38,7 @@ export default class SceneInit {
   constructor(canvasId) {
 
     // NOTE: Dev options
-    this.devCamera = new devCamera(3);
+    this.devCamera = new devCamera(2);
     this.devControls = true;
     this.devStats = false;
 

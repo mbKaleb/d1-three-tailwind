@@ -8,7 +8,8 @@ const tronDisk3 = "/models/tron_disk3/scene.gltf";
 
 
 const basicRotation = (target) => {
-  target.scene.rotation.y += 0.04;
+  target.scene.rotation.y += 0.01;
+  // target.scene.rotation.x += 0.01;
 }
 
 const getY = (scroll, ITEM_ID) => {
@@ -83,13 +84,17 @@ function ModelsCanvas(props) {
     mainScene.animate();
 
     //TRON DISK //////////////////////////////////////
-    glftLoader.load(tronDisk3, (gltfScene) => {
+    glftLoader.load(tronDisk, (gltfScene) => {
       loadedTronDisk = gltfScene;
-      gltfScene.scene.scale.set(4, 4, 4);
-      gltfScene.scene.rotation.y = 1.6
-      gltfScene.scene.position.y = -2.6
-      // gltfScene.scene.rotation.x = 1.1
+      gltfScene.scene
+      gltfScene.scene.scale.set(0.1, 0.1, 0.1);
+      // gltfScene.scene.rotation.y = 7
+      // gltfScene.scene.rotation.z = 1.6
+      gltfScene.scene.rotation.x = 1.55
+      gltfScene.scene.position.z = 100
+
       mainScene.scene.add(gltfScene.scene);
+
     });
     //////////////////////////////////////////////////
 
@@ -117,7 +122,7 @@ function ModelsCanvas(props) {
     
 
     const animate = () => {
-      // if (loadedTronDisk) { basicRotation(loadedTronDisk)};
+      if (loadedTronDisk) { basicRotation(loadedTronDisk)};
       requestAnimationFrame(animate);
     };
     animate();
