@@ -1,30 +1,41 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
-function ContentContainer(props) {
-  let parentElement = document.getElementById("01")
-  
-  
+function wait2seconds(){
+  return new Promise((resolve)=>{
+    setTimeout(()=> {
+      resolve('resolved');
+    }, 1000)
+  })
+}
+
+function ContentContainer({children}) {
+  const [isPageActive, setIsPageActive] = useState(false)
+  let parentElement = document.getElementById("cont01")
+
+  async function setPage(){
+    const res = await wait2seconds()
+    setIsPageActive(true)
+  }
+
   let observer = new IntersectionObserver(function(entries) {
     if(entries[0].isIntersecting === true) {
-      console.log('Item has just APPEARED!');
+      console.log("Activated")
+      setPage()
     } else {
-      console.log('Item has just DISAPPEARED!');
+      null
     }
   }, { threshold: [1] });
-  
+
+
   useEffect(() => {
     if (parentElement !== null){
-      observer.observe(document.getElementById("01"));
+      observer.observe(parentElement);
     }
-    // console.log(parentElement)
   }, [parentElement])
 
-
-  // console.log(props)
-  // console.log(parent)
   return (
     <div className="h-[100vh] w-[100vw] mt-[35.4vh] border-[64px] snap-start snap-always flex justify-center items-center">
-        {props.children}
+        {children(isPageActive)}
     </div>
   )
 }
