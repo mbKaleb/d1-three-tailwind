@@ -8,7 +8,7 @@ const tronDisk3 = "/models/tron_disk3/scene.gltf";
 
 
 const basicRotation = (target) => {
-  target.scene.rotation.y += 0.001;
+  // target.scene.rotation.y += 0.001;
   // target.scene.rotation.x += 0.01;
 }
 
@@ -19,8 +19,6 @@ const getY = (scroll, ITEM_ID) => {
 
   if (yValue > 100){yValue = 100}
   if (yValue <= -100){yValue = -100}
-  // console.log("yValue: "+ yValue)
-  // console.log("scroll: "+scroll)
   return yValue
 }
 
@@ -41,57 +39,58 @@ function ModelsCanvas(props) {
     
     let currScrollPos = 0
     let scrollValue = 0
+    let scrollPosition
     const windowAdjustment = 2000
     
     const handleCamera = (ev) => { //Doesnt work lol
+
+      //Handle Scroll Bar
       if (appContext){
         scrollValue = appContext.children[0].getBoundingClientRect().top // Get distance from top of document, will be negative
-      }
-      
-      if (scrollValue <= 0) {
         currScrollPos = (Math.abs(scrollValue) / (window.innerHeight/windowAdjustment))
-      }
-      
-      
-      if(loadedTronDisk){
-        const ITEM_ID = 1
-        const SCROLLPOS = (currScrollPos/25);
-        const quadrant = Math.floor(((SCROLLPOS/100)%4) + ITEM_ID);
-
-        const actualY = getY(SCROLLPOS, ITEM_ID) // Actual Y value on a graph calculator
-          const y = mapGridToCanvasY(actualY) // - converts from grid to canvas grid
-            loadedTronDisk.scene.position.z = y
-
-        const actualX = loadedTronDisk.scene.position.x = solveQE(y, quadrant, ITEM_ID)
-          const x = actualX - 49.1           // - converts from grid to canvas grid
-            loadedTronDisk.scene.position.x = x
-        
-        //Rotation
-        const actualRadians = getRotation(actualX, actualY)
-          const rotation = -(actualRadians -0.1)
-            loadedTronDisk.scene.rotation.z = rotation
+        scrollPosition = currScrollPos/25
       }
 
+      //Relate Scroll Data to models
+      const handleModel = (loadedModel=null, id, camAdjustment) => {
+        if (loadedModel){
+          const quadrant = Math.floor(((scrollPosition/100)%4) + id);
 
-      if (loadedthreeManLJ){
-        const ITEM_ID = 4
-        const SCROLLPOS = (currScrollPos/25);
-        const quadrant = Math.floor(((SCROLLPOS/100)%4) + ITEM_ID);
+          const actualY = getY(scrollPosition, id) // Actual Y value on a graph calculator
+            const y = mapGridToCanvasY(actualY) // - converts from grid to canvas grid
+              loadedModel.scene.position.z = y + camAdjustment
 
-        const y  = mapGridToCanvasY(getY(SCROLLPOS, ITEM_ID)) // - converts from grid to canvas grid
-          loadedthreeManLJ.scene.position.z = y -20
-        const x = loadedthreeManLJ.scene.position.x = solveQE(y, quadrant, ITEM_ID) - 49.1 // - converts from grid to canvas grid
-        //Custom swoop math
-        const height = 0.02*((y*y)) - (y*0.45)
-          loadedthreeManLJ.scene.position.y = height -5;
-        if (y < 0){
-          loadedthreeManLJ.scene.rotation.x = height/200
-        } else {
-          loadedthreeManLJ.scene.rotation.x = -((height/15))
+          const actualX = loadedModel.scene.position.x = solveQE(y, quadrant, id)
+            const x = actualX - 49.1           // - converts from grid to canvas grid
+              loadedModel.scene.position.x = x
+          
+          //Rotation
+          const actualRadians = getRotation(actualX, actualY)
+
+          return (
+            {
+              'rotation': actualRadians
+            }
+            )
         }
-        //Rotation
-      
       }
+      let tronDiskRotation = handleModel(loadedTronDisk, 1, 0).rotation
+        loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.1)
+
+      let lightJetRotation = handleModel(loadedthreeManLJ, 4, -20).rotation
+        loadedthreeManLJ.scene.rotation.y = (lightJetRotation -1.5)
+
+      //   //Custom swoop math
+      //   const height = 0.02*((y*y)) - (y*0.45)
+      //     loadedthreeManLJ.scene.position.y = height -5;
+      //   if (y < 0){
+      //     loadedthreeManLJ.scene.rotation.x = height/200
+      //   } else {
+      //     loadedthreeManLJ.scene.rotation.x = -((height/15))
+      //   }
+      //   //Rotation
+      
+      // }
 
       prevScrollPos = currScrollPos;
     }
@@ -103,15 +102,9 @@ function ModelsCanvas(props) {
     //TRON DISK //////////////////////////////////////
     glftLoader.load(tronDisk3, (gltfScene) => {
       loadedTronDisk = gltfScene;
-      // gltfScene.scene.position.y = 100
       gltfScene.scene.scale.set(6, 6, 6);
-      // gltfScene.scene.rotation.y = 7
-      // gltfScene.scene.rotation.z = 1.5
       gltfScene.scene.rotation.x = 1.5
-      // gltfScene.scene.position.z = 1.5
-
       mainScene.scene.add(gltfScene.scene);
-
     });
     //////////////////////////////////////////////////
 
@@ -126,9 +119,6 @@ function ModelsCanvas(props) {
       mainScene.scene.add(gltfScene.scene);
     });
     //////////////////////////////////////////////////
-
-    
-    
 
     const animate = () => {
       if (loadedTronDisk) { basicRotation(loadedTronDisk)};

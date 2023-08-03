@@ -23,7 +23,6 @@ function solveForX(y, quadrant) {
 //Version 2 (-4x^{2}+(10000-1y^{2})=0)
 function solveQE(y, quadrant) {
   quadrant = quadrant%5
-  // console.log(quadrant)
 
   if (y > 100) y = 100
   const a = -4;
@@ -50,14 +49,12 @@ function solveQE(y, quadrant) {
   }
 }
 
-function getRotation(x, y){
-  console.log(x, y)
+function getRotation(x, y){ //Mapping plot points to radians for model rotation
   let a = Math.sqrt(2500);
   let b = Math.sqrt(10000);
 
   let theta = Math.atan2(y * Math.sqrt(250), x * Math.sqrt(1000));
-  console.log(theta)
-  return theta;
+  return theta + 0.2;
 }
 
 export {solveForX, solveQE, getRotation}
