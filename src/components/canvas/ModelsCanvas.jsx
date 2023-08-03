@@ -35,7 +35,6 @@ function ModelsCanvas(props) {
   const glftLoader = new GLTFLoader();
   let prevScrollPos = 0;
   let loadedTronDisk;
-  let loadedTronDisk2;
   let loadedthreeManLJ;
   
   useEffect(() => {
@@ -60,22 +59,25 @@ function ModelsCanvas(props) {
         // console.log(quadrant)
         const y = mapGridToCanvasY(getY(SCROLLPOS, ITEM_ID)) // - converts from grid to canvas grid
           loadedTronDisk.scene.position.z = y
-        const x = loadedTronDisk.scene.position.x = solveQE(y, quadrant, ITEM_ID) - 50  // - converts from grid to canvas grid
+        const x = loadedTronDisk.scene.position.x = solveQE(y, quadrant, ITEM_ID) - 49.1  // - converts from grid to canvas grid
       }
-      // if (loadedTronDisk2){
-      //   const ITEM_ID = 2
-      //   const SCROLLPOS = (currScrollPos/25);
-      //   const quadrant = Math.floor(((SCROLLPOS/100)%4 + ITEM_ID));
-      //   const y = loadedTronDisk2.scene.position.z = mapGridToCanvasY(getY(SCROLLPOS, ITEM_ID)) // - converts from grid to canvas grid
-      //   const x = loadedTronDisk2.scene.position.x = solveQE(y, quadrant, ITEM_ID) // - converts from grid to canvas grid
-      // }
-      // if (loadedthreeManLJ){
-      //   const ITEM_ID = 3
-      //   const SCROLLPOS = (currScrollPos/25);
-      //   const quadrant = Math.floor(((SCROLLPOS/100)%4 + ITEM_ID));
-      //   const y = loadedthreeManLJ.scene.position.z = mapGridToCanvasY(getY(SCROLLPOS, ITEM_ID)) // - converts from grid to canvas grid
-      //   const x = loadedthreeManLJ.scene.position.x = solveQE(y, quadrant, ITEM_ID) // - converts from grid to canvas grid
-      // }
+      if (loadedthreeManLJ){
+        const ITEM_ID = 4
+        const SCROLLPOS = (currScrollPos/25);
+        const quadrant = Math.floor(((SCROLLPOS/100)%4) + ITEM_ID);
+
+        const y  = mapGridToCanvasY(getY(SCROLLPOS, ITEM_ID)) // - converts from grid to canvas grid
+          loadedthreeManLJ.scene.position.z = y -20
+        const x = loadedthreeManLJ.scene.position.x = solveQE(y, quadrant, ITEM_ID) - 49.1 // - converts from grid to canvas grid
+        //Custom swoop math
+        const height = 0.02*((y*y)) - (y*0.45)
+          loadedthreeManLJ.scene.position.y = height -5;
+        if (y < 0){
+          loadedthreeManLJ.scene.rotation.x = height/200
+        } else {
+          loadedthreeManLJ.scene.rotation.x = -((height/15))
+        }
+      }
 
       prevScrollPos = currScrollPos;
     }
@@ -87,7 +89,7 @@ function ModelsCanvas(props) {
     //TRON DISK //////////////////////////////////////
     glftLoader.load(tronDisk3, (gltfScene) => {
       loadedTronDisk = gltfScene;
-      gltfScene.scene
+      // gltfScene.scene.position.y = 100
       gltfScene.scene.scale.set(6, 6, 6);
       // gltfScene.scene.rotation.y = 7
       // gltfScene.scene.rotation.z = 1.5
@@ -99,24 +101,16 @@ function ModelsCanvas(props) {
     });
     //////////////////////////////////////////////////
 
-
-    
-    //TRON DISK 2 //////////////////////////////////////
-    // glftLoader.load(tronDisk, (gltfScene) => {
-    //   loadedTronDisk2 = gltfScene;
-    //   gltfScene.scene.scale.set(0.05, 0.05, 0.05);
-    //   gltfScene.scene.rotation.x = 1.5
-    //   mainScene.scene.add(gltfScene.scene);
-    // });
-    // //////////////////////////////////////////////////
-
     // //3MAN LIGHT JET //////////////////////////////////
-    // glftLoader.load(threeManLJ, (gltfScene) => {
-    //   loadedthreeManLJ = gltfScene;
-    //   gltfScene.scene.scale.set(0.05, 0.05, 0.05);
-    //   gltfScene.scene.rotation.x = 1.5
-    //   mainScene.scene.add(gltfScene.scene);
-    // });
+    glftLoader.load(threeManLJ, (gltfScene) => {
+      loadedthreeManLJ = gltfScene;
+      gltfScene.scene.scale.set(0.05, 0.05, 0.05);
+      gltfScene.scene.position.y = -1
+      gltfScene.scene.rotation.z = -0.1
+      gltfScene.scene.rotation.x = 0.3
+      gltfScene.scene.rotation.y = -1.6
+      mainScene.scene.add(gltfScene.scene);
+    });
     //////////////////////////////////////////////////
 
     

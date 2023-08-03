@@ -23,7 +23,7 @@ class devCamera {
       case 3 : //Production Preview
       this.x = 0
       this.y = 5
-      this.z = 30
+      this.z = 20
         break;
       default:
         this.type = false;
@@ -48,7 +48,7 @@ export default class SceneInit {
     this.renderer = undefined;
 
     // NOTE: Camera params;
-    this.fov = 110;
+    this.fov = 100;
     this.nearPlane = 1;
     this.farPlane = 1000;
     this.canvasId = canvasId;

@@ -1,8 +1,9 @@
 import ContentContainer from "./ContentContainer"
 
 function Item({children, isActive, className}) {
-  const activeClass = "text-4xl text-[#a4fcfb] drop-shadow-[0px_0px_8px_rgba(255,255,255,1)] " + className
-  const inactiveClass = "text-4xl text-gray-700 rounded " + className
+  // const activeClass = "text-4xl text-white drop-shadow-[0px_0px_6px_rgba(0,0,0,1)] " + className 
+  const activeClass = "text-4xl font-light text-[#ccfcfc] [text-shadow:_0px_0px_30px_rgb(255_255_255_/_100%)] " + className
+  const inactiveClass = "text-4xl font-light text-gray-700 rounded " + className
 
   return (
     <div className={isActive? activeClass: inactiveClass}>
@@ -32,6 +33,36 @@ function AppContent() {
             )
           }}
         </ContentContainer>
+        <ContentContainer>{()=>{
+          return (
+            <div
+              className="relative space-y-4"
+              id="cont02"
+            >
+              <Item> </Item>
+            </div>
+          )
+        }}</ContentContainer>
+        <ContentContainer>{()=>{
+          return (
+            <div
+              className="relative space-y-4"
+              id="cont02"
+            >
+              <Item> </Item>
+            </div>
+          )
+        }}</ContentContainer>
+        <ContentContainer>{()=>{
+          return (
+            <div
+              className="relative space-y-4"
+              id="cont02"
+            >
+              <Item> </Item>
+            </div>
+          )
+        }}</ContentContainer>
     </div>
   )
 }
