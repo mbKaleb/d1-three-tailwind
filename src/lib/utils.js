@@ -50,4 +50,14 @@ function solveQE(y, quadrant) {
   }
 }
 
-export {solveForX, solveQE}
+function getRotation(x, y){
+  console.log(x, y)
+  let a = Math.sqrt(2500);
+  let b = Math.sqrt(10000);
+
+  let theta = Math.atan2(y * Math.sqrt(250), x * Math.sqrt(1000));
+  console.log(theta)
+  return theta;
+}
+
+export {solveForX, solveQE, getRotation}

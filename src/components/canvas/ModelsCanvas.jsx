@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import SceneInit from '../../lib/SceneInit';
-import { solveForX, solveQE } from '../../lib/utils';
+import { solveForX, solveQE, getRotation } from '../../lib/utils';
 const tronDisk = "/models/tron_disk/scene.gltf";
 const threeManLJ = "/models/three_man_light_jet_tron/scene.gltf";
 const tronDisk3 = "/models/tron_disk3/scene.gltf";
 
 
 const basicRotation = (target) => {
-  target.scene.rotation.y += 0.003;
+  target.scene.rotation.y += 0.001;
   // target.scene.rotation.x += 0.01;
 }
 
@@ -52,15 +52,27 @@ function ModelsCanvas(props) {
         currScrollPos = (Math.abs(scrollValue) / (window.innerHeight/windowAdjustment))
       }
       
+      
       if(loadedTronDisk){
         const ITEM_ID = 1
         const SCROLLPOS = (currScrollPos/25);
         const quadrant = Math.floor(((SCROLLPOS/100)%4) + ITEM_ID);
-        // console.log(quadrant)
-        const y = mapGridToCanvasY(getY(SCROLLPOS, ITEM_ID)) // - converts from grid to canvas grid
-          loadedTronDisk.scene.position.z = y
-        const x = loadedTronDisk.scene.position.x = solveQE(y, quadrant, ITEM_ID) - 49.1  // - converts from grid to canvas grid
+
+        const actualY = getY(SCROLLPOS, ITEM_ID) // Actual Y value on a graph calculator
+          const y = mapGridToCanvasY(actualY) // - converts from grid to canvas grid
+            loadedTronDisk.scene.position.z = y
+
+        const actualX = loadedTronDisk.scene.position.x = solveQE(y, quadrant, ITEM_ID)
+          const x = actualX - 49.1           // - converts from grid to canvas grid
+            loadedTronDisk.scene.position.x = x
+        
+        //Rotation
+        const actualRadians = getRotation(actualX, actualY)
+          const rotation = -(actualRadians -0.1)
+            loadedTronDisk.scene.rotation.z = rotation
       }
+
+
       if (loadedthreeManLJ){
         const ITEM_ID = 4
         const SCROLLPOS = (currScrollPos/25);
@@ -77,6 +89,8 @@ function ModelsCanvas(props) {
         } else {
           loadedthreeManLJ.scene.rotation.x = -((height/15))
         }
+        //Rotation
+      
       }
 
       prevScrollPos = currScrollPos;
