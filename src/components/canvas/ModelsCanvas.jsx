@@ -8,8 +8,12 @@ const tronDisk3 = "/models/tron_disk3/scene.gltf";
 
 
 const basicRotation = (target) => {
+  target.scene.rotation.y += 0.001;
+}
+const basicWobble = target => {
+  // target.scene.rotation.x += 0.001;
   // target.scene.rotation.y += 0.001;
-  // target.scene.rotation.x += 0.01;
+  // target.scene.rotation.z += 0.002;
 }
 
 const getY = (scroll, ITEM_ID) => {
@@ -69,26 +73,50 @@ function ModelsCanvas(props) {
 
           return (
             {
-              'rotation': actualRadians
+              "graphCords": {"y":actualY,"x":actualX},
+              "rotation": actualRadians
             }
             )
         }
       }
-      let tronDiskRotation = handleModel(loadedTronDisk, 1, 0).rotation
-        loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.1)
+      const {
+        rotation: tronDiskRotation,
+        graphCords: tronDiskGC
+      } = handleModel(loadedTronDisk, 1, 0);
+      loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.1)
 
-      let lightJetRotation = handleModel(loadedthreeManLJ, 4, -20).rotation
-        loadedthreeManLJ.scene.rotation.y = (lightJetRotation -1.5)
+      const {
+        rotation: LJRotation,
+        graphCords: LightJetGC
+      } = handleModel(loadedthreeManLJ, 4, -20);
+      loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5)
+      // console.log(LightJetGC)
+      if (LightJetGC.x > 0 && LightJetGC.y > -50){// take y and return height
+        let y = LightJetGC.y +51;
+        let height = ((0.004 * (y*y)) - (0.4*y) + 9)
+          loadedthreeManLJ.scene.position.y = height
+          // console.log(LightJetGC.y)
+        let rotationX
+        if (LightJetGC.y >= 0){
+          rotationX = Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50));
+        } else {
+          rotationX = 0
+        }
+          loadedthreeManLJ.scene.rotation.z = -rotationX/110
+      }
 
-      //   //Custom swoop math
-      //   const height = 0.02*((y*y)) - (y*0.45)
-      //     loadedthreeManLJ.scene.position.y = height -5;
-      //   if (y < 0){
-      //     loadedthreeManLJ.scene.rotation.x = height/200
-      //   } else {
-      //     loadedthreeManLJ.scene.rotation.x = -((height/15))
-      //   }
-      //   //Rotation
+        //Custom swoop math
+
+
+        // //Custom swoop math
+        // const height = 0.02*((y*y)) - (y*0.45)
+        //   loadedthreeManLJ.scene.position.y = height -5;
+        // if (y < 0){
+        //   loadedthreeManLJ.scene.rotation.x = height/200
+        // } else {
+        //   loadedthreeManLJ.scene.rotation.x = -((height/15))
+        // }
+        // //Rotation
       
       // }
 
@@ -103,6 +131,9 @@ function ModelsCanvas(props) {
     glftLoader.load(tronDisk3, (gltfScene) => {
       loadedTronDisk = gltfScene;
       gltfScene.scene.scale.set(6, 6, 6);
+      gltfScene.scene.position.x = -50
+      gltfScene.scene.position.z = -100
+      // gltfScene.scene.position.y = 50
       gltfScene.scene.rotation.x = 1.5
       mainScene.scene.add(gltfScene.scene);
     });
@@ -112,16 +143,17 @@ function ModelsCanvas(props) {
     glftLoader.load(threeManLJ, (gltfScene) => {
       loadedthreeManLJ = gltfScene;
       gltfScene.scene.scale.set(0.05, 0.05, 0.05);
-      gltfScene.scene.position.y = -1
-      gltfScene.scene.rotation.z = -0.1
-      gltfScene.scene.rotation.x = 0.3
-      gltfScene.scene.rotation.y = -1.6
+      gltfScene.scene.position.y = 6
+      // gltfScene.scene.rotation.z = -0.1
+      // gltfScene.scene.rotation.x = -0.3
+      // gltfScene.scene.rotation.y = -1.6
       mainScene.scene.add(gltfScene.scene);
     });
-    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////0.0018x^{2}-0.2x\ +\ 2 exit 111
 
     const animate = () => {
-      if (loadedTronDisk) { basicRotation(loadedTronDisk)};
+      if (loadedTronDisk) { basicRotation(loadedTronDisk) };
+      if (loadedthreeManLJ) { basicWobble(loadedthreeManLJ) };
       requestAnimationFrame(animate);
     };
     animate();
@@ -131,7 +163,10 @@ function ModelsCanvas(props) {
         handleCamera(e)
       };
     }
+
   }, [appContext]);
+  
+  
 
   return (
     <div className='' >
