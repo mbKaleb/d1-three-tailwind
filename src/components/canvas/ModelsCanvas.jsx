@@ -98,11 +98,14 @@ function ModelsCanvas(props) {
           // console.log(LightJetGC.y)
         let rotationX
         if (LightJetGC.y >= 0){
-          rotationX = Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50));
+          rotationX = (0.9*(Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50))))-5;
         } else {
-          rotationX = 0
+          let LJGC = Math.abs(LightJetGC.y)
+          console.log(LJGC)
+          rotationX = 
+          -(0.8*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+5
         }
-          loadedthreeManLJ.scene.rotation.z = -rotationX/110
+          loadedthreeManLJ.scene.rotation.z = -rotationX/90
       }
 
         //Custom swoop math
