@@ -38,7 +38,7 @@ export default class SceneInit {
   constructor(canvasId) {
 
     // NOTE: Dev options
-    this.devCamera = new devCamera(2);
+    this.devCamera = new devCamera(1);
     this.devControls = true;
     this.devStats = false;
 
@@ -108,7 +108,7 @@ export default class SceneInit {
     this.scene.add(this.spotLight);
 
     this.gridHelper = new THREE.GridHelper(200, 50);
-    this.scene.add(this.gridHelper);
+    // this.scene.add(this.gridHelper);
 
     // if window resizes
     window.addEventListener('resize', () => this.onWindowResize(), false);

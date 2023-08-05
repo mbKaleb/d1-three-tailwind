@@ -8,7 +8,7 @@ const tronDisk3 = "/models/tron_disk3/scene.gltf";
 
 
 const basicRotation = (target) => {
-  target.scene.rotation.y += 0.001;
+  target.scene.rotation.y += 0.002;
 }
 const basicWobble = target => {
   // target.scene.rotation.x += 0.001;
@@ -90,39 +90,20 @@ function ModelsCanvas(props) {
         graphCords: LightJetGC
       } = handleModel(loadedthreeManLJ, 4, -20);
       loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5)
-      // console.log(LightJetGC)
+
       if (LightJetGC.x > 0 && LightJetGC.y > -50){// take y and return height
-        let y = LightJetGC.y +51;
+        let y = LightJetGC.y +50;
         let height = ((0.004 * (y*y)) - (0.4*y) + 9)
           loadedthreeManLJ.scene.position.y = height
-          // console.log(LightJetGC.y)
         let rotationX
         if (LightJetGC.y >= 0){
-          rotationX = (0.9*(Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50))))-5;
+          rotationX = (0.9*(Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50))))-4;
         } else {
           let LJGC = Math.abs(LightJetGC.y)
-          console.log(LJGC)
-          rotationX = 
-          -(0.8*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+5
+          rotationX = -(0.5*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+2
         }
           loadedthreeManLJ.scene.rotation.z = -rotationX/90
       }
-
-        //Custom swoop math
-
-
-        // //Custom swoop math
-        // const height = 0.02*((y*y)) - (y*0.45)
-        //   loadedthreeManLJ.scene.position.y = height -5;
-        // if (y < 0){
-        //   loadedthreeManLJ.scene.rotation.x = height/200
-        // } else {
-        //   loadedthreeManLJ.scene.rotation.x = -((height/15))
-        // }
-        // //Rotation
-      
-      // }
-
       prevScrollPos = currScrollPos;
     }
 

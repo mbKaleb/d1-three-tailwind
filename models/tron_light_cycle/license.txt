@@ -1,0 +1,11 @@
+Model Information:
+* title:	Disney Infinity 2.0 - TRN Light Cycle
+* source:	https://sketchfab.com/3d-models/disney-infinity-20-trn-light-cycle-af68b5214efc4c1f95cd18e3d9e597cc
+* author:	JohnLogostini (https://sketchfab.com/JohnLogostini)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Disney Infinity 2.0 - TRN Light Cycle" (https://sketchfab.com/3d-models/disney-infinity-20-trn-light-cycle-af68b5214efc4c1f95cd18e3d9e597cc) by JohnLogostini (https://sketchfab.com/JohnLogostini) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
