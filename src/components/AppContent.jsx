@@ -39,7 +39,7 @@ function AppContent() {
             className="relative space-y-4"
             id="cont02"
           >
-            <Item isActive={isActive} className="mt-[13vh] pb-4"> Skills </Item>
+            <Item isActive={isActive} className="mt-[13vh] pb-4">Top Skills </Item>
             <Item isActive={isActive} className="pl-4 py-5" > Cloud Native Software Development -  Written Technical Communication - Interest in market research </Item>
             <Item isActive={isActive} className="pl-4" > LANG: Javascript (TS), Rust, Ruby, C++  </Item>
             <Item isActive={isActive} className="pl-4" > SDLC: Agile Development  </Item>
