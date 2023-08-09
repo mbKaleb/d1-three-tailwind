@@ -28,7 +28,7 @@ function AppContent() {
             <Item isActive={isActive} className="pb-4"> Software Developer </Item>
             <Item isActive={isActive} className="pl-4" > Name: Kaleb Franken </Item>
             <Item isActive={isActive} className="pl-4" > Education: BS In Cloud Computing @Purdue Global </Item>
-            <Item isActive={isActive} className="pl-4" > Favorite Color: #0FFFFA </Item>
+            {/* <Item isActive={isActive} className="pl-4" > Favorite Color: #0FFFFA </Item> */}
           </div>
         )
       }}
