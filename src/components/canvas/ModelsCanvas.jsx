@@ -17,7 +17,7 @@ const basicWobble = target => {
 }
 
 const getY = (scroll, ITEM_ID) => {
-  scroll = scroll + (100*(ITEM_ID-1))
+  scroll = scroll + (100*(-ITEM_ID+1))
 
   let yValue  = 100 * Math.cos(3.1415/200 * scroll) //simple cosin wave with manitude of 400
 
@@ -58,7 +58,7 @@ function ModelsCanvas(props) {
       //Relate Scroll Data to models
       const handleModel = (loadedModel=null, id, camAdjustment) => {
         if (loadedModel){
-          const quadrant = Math.floor(((scrollPosition/100)%4) + id);
+          const quadrant = Math.floor(((scrollPosition/100)%4) - id);
 
           const actualY = getY(scrollPosition, id) // Actual Y value on a graph calculator
             const y = mapGridToCanvasY(actualY) // - converts from grid to canvas grid
@@ -88,7 +88,7 @@ function ModelsCanvas(props) {
       const {
         rotation: LJRotation,
         graphCords: LightJetGC
-      } = handleModel(loadedthreeManLJ, 4, -20);
+      } = handleModel(loadedthreeManLJ, 2, -20);
       loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5)
 
       if (LightJetGC.x > 0 && LightJetGC.y > -50){// take y and return height
