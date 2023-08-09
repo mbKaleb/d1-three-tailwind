@@ -2,7 +2,13 @@ import { useEffect } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import SceneInit from '../../lib/SceneInit';
 import { solveForX, solveQE, getRotation } from '../../lib/utils';
+
+
+
 const tronDisk = "/models/tron_disk/scene.gltf";
+
+const tron_light_cycle = "/models/tron_moto_sdc/scene.gltf";
+const tron_moto_sdc = "/models/tron_moto_sdc/scene.gltf";
 const threeManLJ = "/models/three_man_light_jet_tron/scene.gltf";
 const tronDisk3 = "/models/tron_disk3/scene.gltf";
 
@@ -36,8 +42,10 @@ function ModelsCanvas(props) {
   
   const glftLoader = new GLTFLoader();
   let prevScrollPos = 0;
+
   let loadedTronDisk;
   let loadedthreeManLJ;
+  let loadedLightCycle;
   
   useEffect(() => {
     
@@ -59,6 +67,7 @@ function ModelsCanvas(props) {
       const handleModel = (loadedModel=null, id, camAdjustment) => {
         if (loadedModel){
           const quadrant = Math.floor(((scrollPosition/100)%4) - id);
+          console.log(quadrant)
 
           const actualY = getY(scrollPosition, id) // Actual Y value on a graph calculator
             const y = mapGridToCanvasY(actualY) // - converts from grid to canvas grid
@@ -67,7 +76,6 @@ function ModelsCanvas(props) {
           const actualX = loadedModel.scene.position.x = solveQE(y, quadrant, id)
             const x = actualX - 49.1           // - converts from grid to canvas grid
               loadedModel.scene.position.x = x
-          
           //Rotation
           const actualRadians = getRotation(actualX, actualY)
 
@@ -85,26 +93,33 @@ function ModelsCanvas(props) {
       } = handleModel(loadedTronDisk, 1, 0);
       loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.1)
 
-      const {
-        rotation: LJRotation,
-        graphCords: LightJetGC
-      } = handleModel(loadedthreeManLJ, 2, -20);
-      loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5)
+      // const {
+      //   rotation: LJRotation,
+      //   graphCords: LightJetGC
+      // } = handleModel(loadedthreeManLJ, 2, -20);
+      // loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5)
 
-      if (LightJetGC.x > 0 && LightJetGC.y > -50){// take y and return height
-        let y = LightJetGC.y +50;
-        let height = ((0.004 * (y*y)) - (0.4*y) + 9)
-          loadedthreeManLJ.scene.position.y = height
-        let rotationX
-        if (LightJetGC.y >= 0){
-          rotationX = (0.9*(Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50))))-4;
-        } else {
-          let LJGC = Math.abs(LightJetGC.y)
-          rotationX = -(0.5*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+2
-        }
-          loadedthreeManLJ.scene.rotation.z = -rotationX/90
-      }
-      prevScrollPos = currScrollPos;
+      // if (LightJetGC.x > 0 && LightJetGC.y > -50){// take y and return height
+      //   let y = LightJetGC.y +50;
+      //   let height = ((0.004 * (y*y)) - (0.4*y) + 9)
+      //     loadedthreeManLJ.scene.position.y = height
+      //   let rotationX
+      //   if (LightJetGC.y >= 0){
+      //     rotationX = (0.9*(Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50))))-4;
+      //   } else {
+      //     let LJGC = Math.abs(LightJetGC.y)
+      //     rotationX = -(0.5*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+2
+      //   }
+      //     loadedthreeManLJ.scene.rotation.z = -rotationX/90
+      // }
+      // prevScrollPos = currScrollPos;
+      
+      
+      // const {
+      //   rotation: CycleRotation,
+      //   graphCords: CycleGC
+      // } = handleModel(loadedLightCycle, 3, -20);
+      // loadedthreeManLJ.scene.rotation.y = (CycleRotation -1.5)
     }
 
     const mainScene = new SceneInit('myThreeJsCanvas');
@@ -134,6 +149,19 @@ function ModelsCanvas(props) {
       mainScene.scene.add(gltfScene.scene);
     });
     //////////////////////////////////////////////////0.0018x^{2}-0.2x\ +\ 2 exit 111
+
+    // //3MAN LIGHT JET //////////////////////////////////
+    glftLoader.load(tron_light_cycle, (gltfScene) => {
+      let scale = 0.005
+      loadedLightCycle = gltfScene;
+      
+      gltfScene.scene.scale.set(scale,scale,scale);
+      // gltfScene.scene.position.y = 6
+      // gltfScene.scene.rotation.z = -0.1
+      // gltfScene.scene.rotation.x = -0.3
+      // gltfScene.scene.rotation.y = -1.6
+      mainScene.scene.add(gltfScene.scene);
+    });
 
     const animate = () => {
       if (loadedTronDisk) { basicRotation(loadedTronDisk) };
