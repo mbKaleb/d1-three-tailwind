@@ -10,9 +10,7 @@ function wait2seconds(){
 
 function ContentContainer({children, id}) {
   const [isPageActive, setIsPageActive] = useState(false)
-  // console.log(props)
   let parentElement = document.getElementById(id)
-  // console.log(parentElement)
   
   async function setPage(){
     const res = await wait2seconds()
@@ -21,13 +19,11 @@ function ContentContainer({children, id}) {
   
   let observer = new IntersectionObserver(function(entries) {
     if(entries[0].isIntersecting === true) {
-      console.log("Activated")
       setPage()
     } else {
       null
     }
   }, { threshold: [1] });
-  
   
   useEffect(() => {
     if (parentElement !== null){

@@ -8,7 +8,7 @@ import { solveForX, solveQE, getRotation } from '../../lib/utils';
 const tronDisk = "/models/tron_disk/scene.gltf";
 
 const tron_light_cycle = "/models/tron_moto_sdc/scene.gltf";
-const tron_moto_sdc = "/models/tron_moto_sdc/scene.gltf";
+const one_man_light_jet = "/models/one_man_light_jet_tron/scene.gltf";
 const threeManLJ = "/models/three_man_light_jet_tron/scene.gltf";
 const tronDisk3 = "/models/tron_disk3/scene.gltf";
 
@@ -46,6 +46,7 @@ function ModelsCanvas(props) {
   let loadedTronDisk;
   let loadedthreeManLJ;
   let loadedLightCycle;
+  let loadedOneManLJ;
   
   useEffect(() => {
     
@@ -120,6 +121,13 @@ function ModelsCanvas(props) {
       } = handleModel(loadedLightCycle, 3, 4);
       loadedLightCycle.scene.position.x = CycleGC.x -54
       loadedLightCycle.scene.rotation.y = (CycleRotation -0.3)
+
+      const {
+        rotation: OMLJRotation,
+        graphCords: OMLJGC
+      } = handleModel(loadedOneManLJ, 4, 1);
+      // loadedOneManLJ.scene.position.x = CycleGC.x -54
+      loadedOneManLJ.scene.rotation.y = (CycleRotation -3)
     }
 
     const mainScene = new SceneInit('myThreeJsCanvas');
@@ -140,8 +148,10 @@ function ModelsCanvas(props) {
 
     // 3MAN LIGHT JET
     glftLoader.load(threeManLJ, (gltfScene) => {
+      let scale = 0.08
       loadedthreeManLJ = gltfScene;
-      gltfScene.scene.scale.set(0.05, 0.05, 0.05);
+
+      gltfScene.scene.scale.set(scale,scale,scale);
 
       gltfScene.scene.position.y = 39
       gltfScene.scene.position.x = -75
@@ -162,7 +172,22 @@ function ModelsCanvas(props) {
       mainScene.scene.add(gltfScene.scene);
     });
 
+    // OM LIGHT JET
+    glftLoader.load(one_man_light_jet, (gltfScene) => {
+      let scale = 0.0035
+      loadedOneManLJ = gltfScene;
 
+      gltfScene.scene.position.y = -2.5
+      gltfScene.scene.position.x =  -51
+      gltfScene.scene.position.z = 78
+
+      // gltfScene.scene.rotation.y = 1
+      gltfScene.scene.rotation.x = - 5
+      gltfScene.scene.rotation.z = - 1.3
+
+      gltfScene.scene.scale.set(scale,scale,scale);
+      mainScene.scene.add(gltfScene.scene);
+    });
 
     const animate = () => {
       if (loadedTronDisk) { basicRotation(loadedTronDisk) };
