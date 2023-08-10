@@ -40,9 +40,7 @@ function solveQE(y, quadrant) {
   } else {
     const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
     const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
-
-
-    console.log(quadrant)
+    
     if ((quadrant === 1) || (quadrant == 2)  ){
       console.log('x1: '+ x1)
       return x1

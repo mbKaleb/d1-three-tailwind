@@ -38,7 +38,7 @@ export default class SceneInit {
   constructor(canvasId) {
 
     // NOTE: Dev options
-    this.devCamera = new devCamera(1);
+    this.devCamera = new devCamera(2);
     this.devControls = true;
     this.devStats = false;
 

@@ -67,18 +67,14 @@ function ModelsCanvas(props) {
       const handleModel = (loadedModel=null, id, camAdjustment) => {
         if (loadedModel){
           const quadrant = Math.floor(((scrollPosition/100)%4) - id);
-          console.log(quadrant)
-
           const actualY = getY(scrollPosition, id) // Actual Y value on a graph calculator
             const y = mapGridToCanvasY(actualY) // - converts from grid to canvas grid
               loadedModel.scene.position.z = y + camAdjustment
-
           const actualX = loadedModel.scene.position.x = solveQE(y, quadrant, id)
             const x = actualX - 49.1           // - converts from grid to canvas grid
               loadedModel.scene.position.x = x
           //Rotation
           const actualRadians = getRotation(actualX, actualY)
-
           return (
             {
               "graphCords": {"y":actualY,"x":actualX},
@@ -87,39 +83,40 @@ function ModelsCanvas(props) {
             )
         }
       }
+
       const {
         rotation: tronDiskRotation,
         graphCords: tronDiskGC
       } = handleModel(loadedTronDisk, 1, 0);
       loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.1)
 
-      // const {
-      //   rotation: LJRotation,
-      //   graphCords: LightJetGC
-      // } = handleModel(loadedthreeManLJ, 2, -20);
-      // loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5)
+      const {
+        rotation: LJRotation,
+        graphCords: LightJetGC
+      } = handleModel(loadedthreeManLJ, 2, -20);
+      loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5)
 
-      // if (LightJetGC.x > 0 && LightJetGC.y > -50){// take y and return height
-      //   let y = LightJetGC.y +50;
-      //   let height = ((0.004 * (y*y)) - (0.4*y) + 9)
-      //     loadedthreeManLJ.scene.position.y = height
-      //   let rotationX
-      //   if (LightJetGC.y >= 0){
-      //     rotationX = (0.9*(Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50))))-4;
-      //   } else {
-      //     let LJGC = Math.abs(LightJetGC.y)
-      //     rotationX = -(0.5*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+2
-      //   }
-      //     loadedthreeManLJ.scene.rotation.z = -rotationX/90
-      // }
-      // prevScrollPos = currScrollPos;
+      if (LightJetGC.x > 0 && LightJetGC.y > -50){// take y and return height
+        let y = LightJetGC.y +50;
+        let height = ((0.004 * (y*y)) - (0.4*y) + 9)
+          loadedthreeManLJ.scene.position.y = height
+        let rotationX
+        if (LightJetGC.y >= 0){
+          rotationX = (0.9*(Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50))))-4;
+        } else {
+          let LJGC = Math.abs(LightJetGC.y)
+          rotationX = -(0.5*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+2
+        }
+          loadedthreeManLJ.scene.rotation.z = -rotationX/90
+      }
+      prevScrollPos = currScrollPos;
       
       
-      // const {
-      //   rotation: CycleRotation,
-      //   graphCords: CycleGC
-      // } = handleModel(loadedLightCycle, 3, -20);
-      // loadedthreeManLJ.scene.rotation.y = (CycleRotation -1.5)
+      const {
+        rotation: CycleRotation,
+        graphCords: CycleGC
+      } = handleModel(loadedLightCycle, 3, -25);
+      loadedLightCycle.scene.rotation.y = (CycleRotation -0.05)
     }
 
     const mainScene = new SceneInit('myThreeJsCanvas');
@@ -152,14 +149,9 @@ function ModelsCanvas(props) {
 
     // //3MAN LIGHT JET //////////////////////////////////
     glftLoader.load(tron_light_cycle, (gltfScene) => {
-      let scale = 0.005
+      let scale = 0.008
       loadedLightCycle = gltfScene;
-      
       gltfScene.scene.scale.set(scale,scale,scale);
-      // gltfScene.scene.position.y = 6
-      // gltfScene.scene.rotation.z = -0.1
-      // gltfScene.scene.rotation.x = -0.3
-      // gltfScene.scene.rotation.y = -1.6
       mainScene.scene.add(gltfScene.scene);
     });
 
