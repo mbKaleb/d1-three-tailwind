@@ -20,8 +20,8 @@ function App() {
 
   return (
     <div>
-      <AppContent />
-      <ModelsCanvas appContext={elementState}/>
+      <AppContent appContext={elementState} />
+      <ModelsCanvas appContext={elementState} />
     </div>
   );
 }

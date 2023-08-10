@@ -22,7 +22,6 @@ function solveForX(y, quadrant) {
 
 //Version 2 (-4x^{2}+(10000-1y^{2})=0)
 function solveQE(y, quadrant) {
-  console.log("og var: " +quadrant)
   quadrant += 4
   quadrant = quadrant%4
   // console.log(first)
@@ -42,10 +41,8 @@ function solveQE(y, quadrant) {
     const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
     
     if ((quadrant === 1) || (quadrant == 2)  ){
-      console.log('x1: '+ x1)
       return x1
     } else {
-      console.log('x2: '+ x2)
       return x2
     }
 

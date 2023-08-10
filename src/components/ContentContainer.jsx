@@ -4,19 +4,21 @@ function wait2seconds(){
   return new Promise((resolve)=>{
     setTimeout(()=> {
       resolve('resolved');
-    }, 1000)
+    }, 700)
   })
 }
 
-function ContentContainer({children}) {
+function ContentContainer({children, id}) {
   const [isPageActive, setIsPageActive] = useState(false)
-  let parentElement = document.getElementById("cont01")
-
+  // console.log(props)
+  let parentElement = document.getElementById(id)
+  // console.log(parentElement)
+  
   async function setPage(){
     const res = await wait2seconds()
     setIsPageActive(true)
   }
-
+  
   let observer = new IntersectionObserver(function(entries) {
     if(entries[0].isIntersecting === true) {
       console.log("Activated")
@@ -25,8 +27,8 @@ function ContentContainer({children}) {
       null
     }
   }, { threshold: [1] });
-
-
+  
+  
   useEffect(() => {
     if (parentElement !== null){
       observer.observe(parentElement);
@@ -34,7 +36,7 @@ function ContentContainer({children}) {
   }, [parentElement])
 
   return (
-    <div className="h-[100vh] w-[100vw] mt-[35.4vh] border-[64px] snap-start snap-always flex justify-center items-center">
+    <div className="h-[100vh] w-[100vw] mt-[35.4vh]  snap-start snap-always flex justify-center items-center">
         {children(isPageActive)}
     </div>
   )

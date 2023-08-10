@@ -71,7 +71,7 @@ function ModelsCanvas(props) {
             const y = mapGridToCanvasY(actualY) // - converts from grid to canvas grid
               loadedModel.scene.position.z = y + camAdjustment
           const actualX = loadedModel.scene.position.x = solveQE(y, quadrant, id)
-            const x = actualX - 49.1           // - converts from grid to canvas grid
+            const x = actualX - 50           // - converts from grid to canvas grid
               loadedModel.scene.position.x = x
           //Rotation
           const actualRadians = getRotation(actualX, actualY)
@@ -88,7 +88,7 @@ function ModelsCanvas(props) {
         rotation: tronDiskRotation,
         graphCords: tronDiskGC
       } = handleModel(loadedTronDisk, 1, +3.7);
-      loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.2);
+      loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.217);
 
       const {
         rotation: LJRotation,

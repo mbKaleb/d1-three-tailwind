@@ -107,7 +107,7 @@ export default class SceneInit {
     this.spotLight.position.set(0, 64, 32);
     this.scene.add(this.spotLight);
 
-    this.gridHelper = new THREE.GridHelper(200, 50);
+    this.gridHelper = new THREE.GridHelper(0, 1);
     this.scene.add(this.gridHelper);
 
     // if window resizes
