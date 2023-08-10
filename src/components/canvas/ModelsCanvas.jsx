@@ -52,7 +52,7 @@ function ModelsCanvas(props) {
     let currScrollPos = 0
     let scrollValue = 0
     let scrollPosition
-    const windowAdjustment = 2000
+    const windowAdjustment = 1845
     
     const handleCamera = (ev) => { //Doesnt work lol
 
@@ -87,73 +87,82 @@ function ModelsCanvas(props) {
       const {
         rotation: tronDiskRotation,
         graphCords: tronDiskGC
-      } = handleModel(loadedTronDisk, 1, 0);
-      loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.1)
+      } = handleModel(loadedTronDisk, 1, +3.7);
+      loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.2);
 
       const {
         rotation: LJRotation,
         graphCords: LightJetGC
-      } = handleModel(loadedthreeManLJ, 2, -20);
-      loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5)
+      } = handleModel(loadedthreeManLJ, 2, -25);
+      loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5);
 
-      if (LightJetGC.x > 0 && LightJetGC.y > -50){// take y and return height
+      if (LightJetGC.x > 0 && LightJetGC.y > -100){// take y and return height
         let y = LightJetGC.y +50;
         let height = ((0.004 * (y*y)) - (0.4*y) + 9)
           loadedthreeManLJ.scene.position.y = height
         let rotationX
-        if (LightJetGC.y >= 0){
-          rotationX = (0.9*(Math.sqrt(2500 - (LightJetGC.y-50)*(LightJetGC.y-50))))-4;
+        let LJGC = Math.abs(LightJetGC.y)
+
+        if (LightJetGC.y > 0){
+          rotationX = (0.9*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))-6;
         } else {
-          let LJGC = Math.abs(LightJetGC.y)
-          rotationX = -(0.5*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+2
+          rotationX = - (0.6*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))-2
         }
+
           loadedthreeManLJ.scene.rotation.z = -rotationX/90
+      } else {
+        loadedthreeManLJ.scene.position.y = 39
       }
-      prevScrollPos = currScrollPos;
-      
-      
+
       const {
         rotation: CycleRotation,
         graphCords: CycleGC
-      } = handleModel(loadedLightCycle, 3, -25);
-      loadedLightCycle.scene.rotation.y = (CycleRotation -0.05)
+      } = handleModel(loadedLightCycle, 3, 4);
+      loadedLightCycle.scene.position.x = CycleGC.x -54
+      loadedLightCycle.scene.rotation.y = (CycleRotation -0.3)
     }
 
     const mainScene = new SceneInit('myThreeJsCanvas');
     mainScene.initialize();
     mainScene.animate();
 
-    //TRON DISK //////////////////////////////////////
+    // TRON DISK 
     glftLoader.load(tronDisk3, (gltfScene) => {
       loadedTronDisk = gltfScene;
       gltfScene.scene.scale.set(6, 6, 6);
       gltfScene.scene.position.x = -50
       gltfScene.scene.position.z = -100
-      // gltfScene.scene.position.y = 50
+      
       gltfScene.scene.rotation.x = 1.5
+      gltfScene.scene.rotation.z = 1.5
       mainScene.scene.add(gltfScene.scene);
     });
-    //////////////////////////////////////////////////
 
-    // //3MAN LIGHT JET //////////////////////////////////
+    // 3MAN LIGHT JET
     glftLoader.load(threeManLJ, (gltfScene) => {
       loadedthreeManLJ = gltfScene;
       gltfScene.scene.scale.set(0.05, 0.05, 0.05);
-      gltfScene.scene.position.y = 6
-      // gltfScene.scene.rotation.z = -0.1
-      // gltfScene.scene.rotation.x = -0.3
-      // gltfScene.scene.rotation.y = -1.6
+
+      gltfScene.scene.position.y = 39
+      gltfScene.scene.position.x = -75
+      gltfScene.scene.position.z = -5
       mainScene.scene.add(gltfScene.scene);
     });
-    //////////////////////////////////////////////////0.0018x^{2}-0.2x\ +\ 2 exit 111
 
-    // //3MAN LIGHT JET //////////////////////////////////
+    // LIGHT CYCLE
     glftLoader.load(tron_light_cycle, (gltfScene) => {
       let scale = 0.008
       loadedLightCycle = gltfScene;
+
+      gltfScene.scene.position.y = -0.8
+      gltfScene.scene.position.x =  -51
+      gltfScene.scene.position.z = 78
+
       gltfScene.scene.scale.set(scale,scale,scale);
       mainScene.scene.add(gltfScene.scene);
     });
+
+
 
     const animate = () => {
       if (loadedTronDisk) { basicRotation(loadedTronDisk) };

@@ -18,7 +18,7 @@ class devCamera {
       case 2 : //Production Preview
       this.x = 0
       this.y = 0
-      this.z = 20
+      this.z = 10
         break;
       case 3 : //Production Preview
       this.x = 0
