@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 
 class devCamera {
   constructor(type) {
@@ -46,6 +46,7 @@ export default class SceneInit {
     this.scene = undefined;
     this.camera = undefined;
     this.renderer = undefined;
+    this.composer = undefined;
 
     // NOTE: Camera params;
     this.fov = 110;
@@ -82,15 +83,32 @@ export default class SceneInit {
     // NOTE: Specify a canvas which is already created in the HTML.
     const canvas = document.getElementById(this.canvasId);
     this.renderer = new THREE.WebGLRenderer({
-      canvas,
+      canvas: canvas,
       // NOTE: Anti-aliasing smooths out the edges.
       alpha: false,
       antialias: true,
-
+      
+      
     });
+
     this.composer = new EffectComposer(this.renderer)
+    this.composer.addPass( new RenderPass( this.scene, this.camera))
+    this.composer.addPass( new UnrealBloomPass( 
+      new THREE.Vector2(window.innerWidth,window.innerHeight),
+      1.6,
+      0.1,
+      0.1
+    ))
+
+
+
+
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.renderer.domElement);
+
+
+
+
 
     this.clock = new THREE.Clock();
     if ( this.devControls === true ) this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -124,14 +142,12 @@ export default class SceneInit {
   animate() {
     // NOTE: Window is implied.
     // requestAnimationFrame(this.animate.bind(this));
+    // this.render();
+    this.composer.render()
     window.requestAnimationFrame(this.animate.bind(this));
-    this.render();
-    this.devControls? this.controls.update() : undefined;
-    this.devStats? this.stats.update() : undefined;
   }
 
   render() {
-    // NOTE: Update uniform data on each render.
     this.uniforms.u_time.value += this.clock.getDelta();
     this.renderer.render(this.scene, this.camera);
   }
