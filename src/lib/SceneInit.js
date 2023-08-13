@@ -46,7 +46,11 @@ export default class SceneInit {
     this.scene = undefined;
     this.camera = undefined;
     this.renderer = undefined;
-    this.composer = undefined;
+
+    this.whichComposer = "primary"
+
+    this.primaryComposer = undefined;
+    this.secondaryComposer = undefined;
 
     // NOTE: Camera params;
     this.fov = 110;
@@ -91,15 +95,22 @@ export default class SceneInit {
       
     });
 
-    this.composer = new EffectComposer(this.renderer)
-    this.composer.addPass( new RenderPass( this.scene, this.camera))
-    this.composer.addPass( new UnrealBloomPass( 
+    this.primaryComposer = new EffectComposer(this.renderer)
+    this.primaryComposer.addPass( new RenderPass( this.scene, this.camera))
+    this.primaryComposer.addPass( new UnrealBloomPass( 
       new THREE.Vector2(window.innerWidth,window.innerHeight),
-      1.6,
+      1.2,
       0.1,
       0.1
     ))
-
+    this.secondaryComposer = new EffectComposer(this.renderer)
+    this.secondaryComposer.addPass( new RenderPass( this.scene, this.camera))
+    this.secondaryComposer.addPass( new UnrealBloomPass( 
+      new THREE.Vector2(window.innerWidth,window.innerHeight),
+      0.3,
+      0.4,
+      0
+    ))
 
 
 
@@ -140,11 +151,25 @@ export default class SceneInit {
   }
 
   animate() {
-    // NOTE: Window is implied.
-    // requestAnimationFrame(this.animate.bind(this));
-    // this.render();
-    this.composer.render()
+    if (this.whichComposer === "primary"){ this.primaryComposer.render()}
+    else if (this.whichComposer === "secondary") {this.secondaryComposer.render()};
     window.requestAnimationFrame(this.animate.bind(this));
+  }
+
+  toggleLights(){
+    if (this.whichComposer === "primary"){
+      this.whichComposer = "secondary"
+    } else {
+      this.whichComposer = "primary"
+    }
+  }
+
+  turnOffLights() {
+    this.whichComposer = "secondary"
+  }
+
+  turnOnLights() {
+    this.whichComposer = "primary"
   }
 
   render() {

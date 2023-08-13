@@ -121,6 +121,9 @@ function ModelsCanvas(props) {
       } = handleModel(loadedLightCycle, 3, 4);
       loadedLightCycle.scene.position.x = CycleGC.x -54
       loadedLightCycle.scene.rotation.y = (CycleRotation -0.3)
+      if (CycleGC.x > 30 && CycleGC.y > -25){
+        mainScene.turnOffLights()
+      } else { mainScene.turnOnLights() }
 
       const {
         rotation: OMLJRotation,
@@ -133,6 +136,7 @@ function ModelsCanvas(props) {
     const mainScene = new SceneInit('myThreeJsCanvas');
     mainScene.initialize();
     mainScene.animate();
+    // mainScene.toggleLights();
 
     // TRON DISK 
     glftLoader.load(tronDisk3, (gltfScene) => {
