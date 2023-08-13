@@ -131,9 +131,9 @@ export default class SceneInit {
     this.scene.add(this.ambientLight);
 
     // spot light which is illuminating the chart directly
-    this.spotLight = new THREE.SpotLight(0xffffff, 1);
+    this.spotLight = new THREE.SpotLight(0xAEAEAE, 0.9);
     this.spotLight.castShadow = true;
-    this.spotLight.position.set(0, 64, 32);
+    this.spotLight.position.set(0, 64, 36);
     this.scene.add(this.spotLight);
 
     this.gridHelper = new THREE.GridHelper(0, 1);

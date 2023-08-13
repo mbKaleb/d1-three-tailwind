@@ -94,20 +94,22 @@ function ModelsCanvas(props) {
       const {
         rotation: LJRotation,
         graphCords: LightJetGC
-      } = handleModel(loadedthreeManLJ, 2, -25);
+      } = handleModel(loadedthreeManLJ, 2, -10);
       loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5);
 
       if (LightJetGC.x > 0 && LightJetGC.y > -100){// take y and return height
         let y = LightJetGC.y +50;
-        let height = ((0.004 * (y*y)) - (0.4*y) + 9)
+        let height = ((0.004 * (y*y)) - (0.4*y) + 1)
           loadedthreeManLJ.scene.position.y = height
         let rotationX
         let LJGC = Math.abs(LightJetGC.y)
 
         if (LightJetGC.y > 0){
-          rotationX = (0.9*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))-6;
+          rotationX = (0.9*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))));
+          console.log("a"+rotationX)
         } else {
-          rotationX = - (0.6*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))-2
+          rotationX = -(0.4*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+3.324;
+          console.log("b"+rotationX)
         }
 
           loadedthreeManLJ.scene.rotation.z = -rotationX/90
@@ -128,15 +130,17 @@ function ModelsCanvas(props) {
       const {
         rotation: OMLJRotation,
         graphCords: OMLJGC
-      } = handleModel(loadedOneManLJ, 4, 1);
-      // loadedOneManLJ.scene.position.x = CycleGC.x -54
-      loadedOneManLJ.scene.rotation.y = (CycleRotation -3)
+      } = handleModel(loadedOneManLJ, 4, 6.1);
+      loadedOneManLJ.scene.rotation.y = (CycleRotation -3.3)
+      if (scrollPosition < 30) {
+        loadedOneManLJ.scene.position.z = 300
+      }
+
     }
 
     const mainScene = new SceneInit('myThreeJsCanvas');
     mainScene.initialize();
     mainScene.animate();
-    // mainScene.toggleLights();
 
     // TRON DISK 
     glftLoader.load(tronDisk3, (gltfScene) => {
