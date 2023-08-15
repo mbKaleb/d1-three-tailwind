@@ -23,10 +23,6 @@ const getY = (scroll, ITEM_ID) => {
   return yValue
 }
 
-const mapGridToCanvasY = (item) => {
-  return -item
-}
-
 
 function ModelsCanvas(props) {
   const {appContext} = {...props}
@@ -59,7 +55,7 @@ function ModelsCanvas(props) {
         if (loadedModel){
           const quadrant = Math.floor(((scrollPosition/100)%4) - id);
           const actualY = getY(scrollPosition, id) // Actual Y value on a graph calculator
-            const y = mapGridToCanvasY(actualY) // - converts from grid to canvas grid
+            const y = -(actualY) // - converts from grid to canvas grid
               loadedModel.scene.position.z = y + camAdjustment
           const actualX = loadedModel.scene.position.x = solveQE(y, quadrant, id)
             const x = actualX - 50           // - converts from grid to canvas grid
@@ -132,53 +128,48 @@ function ModelsCanvas(props) {
 
     // TRON DISK 
     glftLoader.load(tronDisk3, (gltfScene) => {
+      let scale = 6; let position = gltfScene.scene.position; let rotation = gltfScene.scene.rotation
+      gltfScene.scene.scale.set(scale, scale, scale);
       loadedTronDisk = gltfScene;
-      gltfScene.scene.scale.set(6, 6, 6);
-      gltfScene.scene.position.x = -50
-      gltfScene.scene.position.z = -100
-      gltfScene.scene.rotation.x = 1.5
-      gltfScene.scene.rotation.z = 1.5
+
+      position.x = -50; position.z = -100;
+      rotation.x = 1.5; rotation.z = 1.5
       mainScene.scene.add(gltfScene.scene);
     });
 
     // 3MAN LIGHT JET
     glftLoader.load(threeManLJ, (gltfScene) => {
-      let scale = 0.08
-      loadedthreeManLJ = gltfScene;
+      let scale = 0.08; let position = gltfScene.scene.position;
       gltfScene.scene.scale.set(scale,scale,scale);
-      gltfScene.scene.position.y = 39
-      gltfScene.scene.position.x = -75
-      gltfScene.scene.position.z = -5
+      loadedthreeManLJ = gltfScene;
+      
+      position.y = 39; position.x = -75; position.z = -5
       mainScene.scene.add(gltfScene.scene);
     });
 
     // LIGHT CYCLE
     glftLoader.load(tron_light_cycle, (gltfScene) => {
-      let scale = 0.008
-      loadedLightCycle = gltfScene;
-      gltfScene.scene.position.y = -0.8
-      gltfScene.scene.position.x =  -51
-      gltfScene.scene.position.z = 78
+      let scale = 0.008; let position = gltfScene.scene.position
       gltfScene.scene.scale.set(scale,scale,scale);
+      loadedLightCycle = gltfScene;
+  
+      position.y = -0.8; position.x =  -51; position.z = 78
       mainScene.scene.add(gltfScene.scene);
     });
 
     // OM LIGHT JET
     glftLoader.load(one_man_light_jet, (gltfScene) => {
-      let scale = 0.0035
-      loadedOneManLJ = gltfScene;
-      gltfScene.scene.position.y = -2.5
-      gltfScene.scene.position.x =  -51
-      gltfScene.scene.position.z = 78
-      gltfScene.scene.rotation.x = - 5
-      gltfScene.scene.rotation.z = - 1.3
+      let scale = 0.0035; let position = gltfScene.scene.position; let rotation = gltfScene.scene.rotation
       gltfScene.scene.scale.set(scale,scale,scale);
+      loadedOneManLJ = gltfScene;
+      
+      position.y = -2.5; position.x =  -51; position.z = 78
+      rotation.x = - 5; rotation.z = - 1.3
       mainScene.scene.add(gltfScene.scene);
     });
 
     const animate = () => {
       if (loadedTronDisk) { basicRotation(loadedTronDisk) };
-      if (loadedthreeManLJ) { basicWobble(loadedthreeManLJ) };
       requestAnimationFrame(animate);
     };
     animate();
