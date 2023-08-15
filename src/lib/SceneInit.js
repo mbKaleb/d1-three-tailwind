@@ -99,7 +99,7 @@ export default class SceneInit {
     this.primaryComposer.addPass( new RenderPass( this.scene, this.camera))
     this.primaryComposer.addPass( new UnrealBloomPass( 
       new THREE.Vector2(window.innerWidth,window.innerHeight),
-      1.2,
+      1.4,
       0.1,
       0.1
     ))
@@ -107,19 +107,13 @@ export default class SceneInit {
     this.secondaryComposer.addPass( new RenderPass( this.scene, this.camera))
     this.secondaryComposer.addPass( new UnrealBloomPass( 
       new THREE.Vector2(window.innerWidth,window.innerHeight),
-      0.3,
-      0.4,
+      0.24,
+      0,
       0
     ))
 
-
-
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.renderer.domElement);
-
-
-
-
 
     this.clock = new THREE.Clock();
     if ( this.devControls === true ) this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -136,7 +130,7 @@ export default class SceneInit {
     this.spotLight.position.set(0, 64, 36);
     this.scene.add(this.spotLight);
 
-    this.gridHelper = new THREE.GridHelper(0, 1);
+    this.gridHelper = new THREE.GridHelper(250, 100);
     this.scene.add(this.gridHelper);
 
     // if window resizes

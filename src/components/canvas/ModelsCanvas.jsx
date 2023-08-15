@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import SceneInit from '../../lib/SceneInit';
-import { solveForX, solveQE, getRotation } from '../../lib/utils';
-
-
-
-const tronDisk = "/models/tron_disk/scene.gltf";
+import { solveQE, getRotation } from '../../lib/utils';
 
 const tron_light_cycle = "/models/tron_moto_sdc/scene.gltf";
 const one_man_light_jet = "/models/one_man_light_jet_tron/scene.gltf";
@@ -14,12 +10,7 @@ const tronDisk3 = "/models/tron_disk3/scene.gltf";
 
 
 const basicRotation = (target) => {
-  target.scene.rotation.y += 0.002;
-}
-const basicWobble = target => {
-  // target.scene.rotation.x += 0.001;
-  // target.scene.rotation.y += 0.001;
-  // target.scene.rotation.z += 0.002;
+  target.scene.rotation.y += 0.0015;
 }
 
 const getY = (scroll, ITEM_ID) => {
@@ -41,7 +32,6 @@ function ModelsCanvas(props) {
   const {appContext} = {...props}
   
   const glftLoader = new GLTFLoader();
-  let prevScrollPos = 0;
 
   let loadedTronDisk;
   let loadedthreeManLJ;
@@ -94,27 +84,25 @@ function ModelsCanvas(props) {
       const {
         rotation: LJRotation,
         graphCords: LightJetGC
-      } = handleModel(loadedthreeManLJ, 2, -10);
+      } = handleModel(loadedthreeManLJ, 2, -15);
       loadedthreeManLJ.scene.rotation.y = (LJRotation -1.5);
 
       if (LightJetGC.x > 0 && LightJetGC.y > -100){// take y and return height
         let y = LightJetGC.y +50;
-        let height = ((0.004 * (y*y)) - (0.4*y) + 1)
+        let height = ((0.004 * (y*y)) - (0.4*y) -1)
           loadedthreeManLJ.scene.position.y = height
         let rotationX
         let LJGC = Math.abs(LightJetGC.y)
 
         if (LightJetGC.y > 0){
           rotationX = (0.9*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))));
-          console.log("a"+rotationX)
         } else {
           rotationX = -(0.4*(Math.sqrt(2500 - (LJGC-50)*(LJGC-50))))+3.324;
-          console.log("b"+rotationX)
         }
 
           loadedthreeManLJ.scene.rotation.z = -rotationX/90
       } else {
-        loadedthreeManLJ.scene.position.y = 39
+        loadedthreeManLJ.scene.position.y = 31
       }
 
       const {
@@ -148,7 +136,6 @@ function ModelsCanvas(props) {
       gltfScene.scene.scale.set(6, 6, 6);
       gltfScene.scene.position.x = -50
       gltfScene.scene.position.z = -100
-      
       gltfScene.scene.rotation.x = 1.5
       gltfScene.scene.rotation.z = 1.5
       mainScene.scene.add(gltfScene.scene);
@@ -158,9 +145,7 @@ function ModelsCanvas(props) {
     glftLoader.load(threeManLJ, (gltfScene) => {
       let scale = 0.08
       loadedthreeManLJ = gltfScene;
-
       gltfScene.scene.scale.set(scale,scale,scale);
-
       gltfScene.scene.position.y = 39
       gltfScene.scene.position.x = -75
       gltfScene.scene.position.z = -5
@@ -171,11 +156,9 @@ function ModelsCanvas(props) {
     glftLoader.load(tron_light_cycle, (gltfScene) => {
       let scale = 0.008
       loadedLightCycle = gltfScene;
-
       gltfScene.scene.position.y = -0.8
       gltfScene.scene.position.x =  -51
       gltfScene.scene.position.z = 78
-
       gltfScene.scene.scale.set(scale,scale,scale);
       mainScene.scene.add(gltfScene.scene);
     });
@@ -184,15 +167,11 @@ function ModelsCanvas(props) {
     glftLoader.load(one_man_light_jet, (gltfScene) => {
       let scale = 0.0035
       loadedOneManLJ = gltfScene;
-
       gltfScene.scene.position.y = -2.5
       gltfScene.scene.position.x =  -51
       gltfScene.scene.position.z = 78
-
-      // gltfScene.scene.rotation.y = 1
       gltfScene.scene.rotation.x = - 5
       gltfScene.scene.rotation.z = - 1.3
-
       gltfScene.scene.scale.set(scale,scale,scale);
       mainScene.scene.add(gltfScene.scene);
     });
@@ -209,13 +188,12 @@ function ModelsCanvas(props) {
         handleCamera(e)
       };
     }
-
   }, [appContext]);
   
   
 
   return (
-    <div className='' >
+    <div>
         <canvas className='z-0' id="myThreeJsCanvas"/>
     </div>
   )
