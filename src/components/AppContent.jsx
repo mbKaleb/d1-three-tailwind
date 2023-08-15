@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react"
 import ContentContainer from "./ContentContainer"
 
+const medText = " text-[2vh] "
+const lgText = " text-[2.5vh] "
+
+
 function Item({ children, isActive, className }) {
-  const activeClass = "text-xl font-light text-[#ccfcfc] [text-shadow:_0px_0px_30px_rgb(255_255_255_/_100%)] " + className
-  const inactiveClass = "text-xl font-light text-gray-700 rounded " + className
+  const activeClass = `${medText} font-light text-[#ccfcfc] [text-shadow:_0px_0px_30px_rgb(255_255_255_/_100%)]` +" "+ className
+  const inactiveClass = `${medText}  font-light text-gray-700 rounded` + " "+ className
 
   return (
     <div className={isActive ? activeClass : inactiveClass}>
@@ -46,7 +50,7 @@ function AppContent(props) {
             className="relative space-y-4"
             id="doc1"
           >
-            <Item isActive={isActive} className="pb-4 text-2xl"> Software Developer </Item>
+            <Item isActive={isActive} className={`pb-2 ${lgText}`}> Software Developer </Item>
             <Item isActive={isActive} className="pl-4" > Kaleb Franken </Item>
             <Item isActive={isActive} className="pl-4" > BS in Computer Science </Item>
             <Item isActive={isActive} className="pl-4" > Favorite Color: #0FFFFA </Item>
@@ -57,8 +61,8 @@ function AppContent(props) {
       <ContentContainer id="doc2" >{function (isActive) {
         return (
           <div id="doc2" className="relative space-y-4" >
-            <Item isActive={isActive} className="mt-[13vh] pb-4 text-2xl">Top Skills </Item>
-            <Item isActive={isActive} className="pl-4 py-5" > Cloud Native Software Development -  Written Technical Communication - Interest in market research </Item>
+            <Item isActive={isActive} className={`mt-[13vh] pb-4 ${lgText} `}>Top Skills </Item>
+            <Item isActive={isActive} className="pl-4 py-[2px]" > Cloud Native Software Development -  Written Technical Communication - Interest in market research </Item>
             <Item isActive={isActive} className="pl-4" > SDLC: Agile Development, Branch Based Development  </Item>
             <Item isActive={isActive} className="pl-4" > CLOUD PROVIDERS: AWS, Azure, Google Cloud, Vercel </Item>
             <Item isActive={isActive} className="pl-4" > LANG: Javascript (TS), Rust, Ruby, C++  </Item>
