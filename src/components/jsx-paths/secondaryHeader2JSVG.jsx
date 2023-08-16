@@ -3,7 +3,7 @@ const widthVal = 350
 const heightVal = (widthVal*aspect)
 
 export const secondaryHeader2JSVG = 
-<svg id="eoqIrAQxDFR1" width="100%"  viewBox="0 370 2200 1080" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+<svg id="eoqIrAQxDFR1" width="100%"  viewBox="0 420 2200 1080" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
     
     <defs >
         <pattern id="img2" patternUnits="userSpaceOnUse" width={widthVal-7} height={heightVal -2}>

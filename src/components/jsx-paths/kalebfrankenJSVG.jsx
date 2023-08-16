@@ -1,5 +1,7 @@
 export const kalebfrankenJSVG = 
-<svg width="100%"  xmlns="http://www.w3.org/2000/svg" viewBox="-170.14218749999998 0.20000000000000284 840.284375 149.6"  preserveAspectRatio="xMidYMid">
+<svg width="100%"  xmlns="http://www.w3.org/2000/svg" 
+viewBox="-200 20 900 1920"  
+preserveAspectRatio="xMidYMid">
 <defs>
   <filter id="editing-neon" x="-100%" y="-100%" width="300%" height="300%">
     <feFlood flood-color="#00afff" result="flood"></feFlood>

@@ -6,7 +6,7 @@ export const primaryHeaderJSVG =
     <svg
         id="exsMwFdczRV1"
         width="100%"
-        viewBox="0 0 1920 1080"
+        viewBox="0 25 1920 1080"
     >
         <defs>
             <pattern
