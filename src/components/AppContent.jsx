@@ -25,6 +25,7 @@ function AppContent(props) {
   const [xtraContainers, setXtraContainers] = useState(1)
 
   useEffect(() => {
+    //Mount Event Listeners
     if (appContext){
       let boundingInstance
       appContext.addEventListener('scroll', function(){
@@ -41,7 +42,7 @@ function AppContent(props) {
   return (
     <div
       id="app-content"
-      className="w-[100vw] h-[100vh] bg- absolute top-0 z-10 outline overflow-y-auto snap-y snap-mandatory"
+      className="w-[100vw] h-[100vh] bg- absolute top-0 z-[20] outline overflow-y-auto snap-y snap-mandatory"
     >
       <ContentContainer>{() => { }}</ContentContainer>
       <ContentContainer id="doc1" >{function (isActive) {

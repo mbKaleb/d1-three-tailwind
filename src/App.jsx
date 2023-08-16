@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 const tronDisk = "/models/tron_disk/scene.gltf";
 import AppContent from './components/AppContent';
 import ModelsCanvas from './components/canvas/ModelsCanvas';
+import FullHeader from './components/header/FullHeader';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div>
+      <FullHeader />
       <AppContent appContext={elementState} />
       <ModelsCanvas appContext={elementState} />
     </div>
