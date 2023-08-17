@@ -3,6 +3,7 @@ import dictionary from "../dictionary.json"
 import ContentContainer from "./ContentContainer"
 import AWSCLFC01 from "/badgeIcons/AWS/AWSCLFC01.png"
 import AWSDVA from "/badgeIcons/AWS/AWSDVA.png"
+import BackToTopBttn from "./small items/BackToTopBttn"
 
 const medText = " text-[2vh] "
 const lgText = " text-[2.5vh] "
@@ -41,6 +42,7 @@ function AWScert({children, credly, src}) {
 function AppContent(props) {
   const {appContext} = {...props}
   const [xtraContainers, setXtraContainers] = useState(1)
+  const [boundingInstanceState, setBoundingInstance] = useState(appContext)
 
   useEffect(() => {
     //Mount Event Listeners
@@ -48,6 +50,7 @@ function AppContent(props) {
       let boundingInstance
       appContext.addEventListener('scroll', function(){
         boundingInstance = appContext.lastChild.getBoundingClientRect()
+        setBoundingInstance(boundingInstance)
         if (boundingInstance.y < 5000) {
             setXtraContainers(prevState => {
               return prevState +1
@@ -61,8 +64,9 @@ function AppContent(props) {
     <div
       id="app-content"
       className="w-[100vw] h-[100vh] absolute top-[1vh] z-[20]  overflow-y-auto snap-y snap-mandatory select-none"
-    >
+      >
       <ContentContainer>{() => { }}</ContentContainer>
+      <BackToTopBttn context={appContext} />
       <ContentContainer id="doc1" >{function (isActive) {
         return (
           <div
@@ -104,8 +108,8 @@ function AppContent(props) {
         return (
           <div id="doc4" className="relative space-y-4 " >
             <div className="flex justify-center">
-              <AWScert credly={dictionary.awsLinks.asocDeveloper} src={AWSDVA} />
               <AWScert credly={dictionary.awsLinks.cloudPractitioner} src={AWSCLFC01} />
+              <AWScert credly={dictionary.awsLinks.asocDeveloper} src={AWSDVA} />
             </div>
             <Item isActive={isActive} className={'w-[100vw] text-center'} > CERTIFICATIONS </Item>
           </div>
