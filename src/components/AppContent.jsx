@@ -4,6 +4,7 @@ import ContentContainer from "./ContentContainer"
 import AWSCLFC01 from "/badgeIcons/AWS/AWSCLFC01.png"
 import AWSDVA from "/badgeIcons/AWS/AWSDVA.png"
 import BackToTopBttn from "./small items/BackToTopBttn"
+import EmailBttn from "./small items/EmailBttn"
 
 const medText = " text-[2vh] "
 const lgText = " text-[2.5vh] "
@@ -67,6 +68,7 @@ function AppContent(props) {
       >
       <ContentContainer>{() => { }}</ContentContainer>
       <BackToTopBttn context={appContext} />
+      <EmailBttn />
       <ContentContainer id="doc1" >{function (isActive) {
         return (
           <div

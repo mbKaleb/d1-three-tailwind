@@ -3,23 +3,27 @@ import { useEffect, useState } from "react"
 export default function BackToTopBttn(props) {
     const { context, bdc } = props
     const [styleClass, setStyleClass] = useState("fixed display:none")
+    const active = "fixed bottom-5 outline outline-gray-100 m-2 p-1 bg-gray-900 rounded-sm drop-shadow hover:drop-shadow-[0_1px_15px_rgba(255_255_255_/_50%)]";
+    const inactive = "fixed display:none";
 
-    // const [boundingHeight, setboundingHeight] = useState(undefined)
-    // let boundingHeight = undefined
     
     useEffect(() => {
         if (context){
-            // console.log(context.children[0].getBoundingClientRect().top) // start at -7700
-
             context.addEventListener('scroll', ()=> {
                 if ((context.children[0].getBoundingClientRect().top) < -7000 ) {
-                    if (styleClass === "fixed display:none"){
-                        setStyleClass("fixed bottom-5 outline outline-gray-100 m-2 p-1 bg-gray-900 rounded-sm drop-shadow hover:drop-shadow-[0_1px_15px_rgba(255_255_255_/_50%)]")
-                    }
+                        setStyleClass(prevState=>{
+                            if (prevState === inactive){
+                                return active
+                            }
+                            return prevState
+                        })
                 } else {
-                    if (styleClass === "fixed bottom-5 outline outline-gray-100 m-2 p-1 bg-gray-900 rounded-sm drop-shadow hover:drop-shadow-[0_1px_15px_rgba(255_255_255_/_50%)]"){
-                        setStyleClass("fixed display:none")
-                    }
+                    setStyleClass(prevState=>{
+                        if (prevState === active){
+                            return inactive
+                        }
+                        return prevState
+                    })
                 }
             })
         }

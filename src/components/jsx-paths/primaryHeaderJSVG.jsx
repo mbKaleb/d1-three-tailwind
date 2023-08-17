@@ -27,6 +27,6 @@ export const primaryHeaderJSVG =
             transform="translate(.000005 0)"
             fill="url(#img1)"
             stroke="#FFF"
-            stroke-width="3"
+            strokeWidth="3"
         />
     </svg>
