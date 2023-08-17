@@ -1,9 +1,11 @@
 const aspect = 710/1024
 const widthVal = 350
 const heightVal = (widthVal*aspect)
+let devWidth = screen.width
+let devHeight = screen.height
 
 export const secondaryHeader2JSVG = 
-<svg id="eoqIrAQxDFR1" width="100%"  viewBox="0 420 2200 1080" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+<svg id="eoqIrAQxDFR1" width="100%"  viewBox={`0 0 ${devWidth} ${devHeight}`} shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
     
     <defs >
         <pattern id="img2" patternUnits="userSpaceOnUse" width={widthVal-7} height={heightVal -2}>
