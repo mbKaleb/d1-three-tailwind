@@ -13,8 +13,8 @@ import EmailBttn from "./small items/EmailBttn"
 import AWScert from "./small items/AWScert"
 import ProjectItem from "./small items/ProjectItem"
 
-const medText = " text-[2vh] "
-const lgText = " text-[2.5vh] "
+const medText = " text-[1.9vh] "
+const lgText = " text-[2.7vh] mb-4"
 
 
 function Item({ children, isActive, className }) {
@@ -91,18 +91,16 @@ function AppContent(props) {
       }}</ContentContainer>
       <ContentContainer id="doc3" >{(isActive) => {
         return (
-          <div id="doc3" className="relative space-y-4" >
+          <div id="doc3" className="relative ml-[10vw]" >
             <Item isActive={isActive} className={`${lgText}`} > Projects </Item>
-            <ProjectItem src={} link={dictionary.projectDeploymentLinks.pathfinder}  />
-            <Item isActive={isActive} > Project 1 </Item>
-            <Item isActive={isActive} > Project 2 </Item>
-            <Item isActive={isActive} > Project 3 </Item>
+            <Item isActive={isActive} > Pathfinder Visualizer </Item>
+            <ProjectItem src={pathfinderThumbnail} link={dictionary.projectDeploymentLinks.pathfinder}  />
           </div>
         )
       }}</ContentContainer>
       <ContentContainer id="doc4" >{(isActive) => {
         return (
-          <div id="doc4" className="relative space-y-4 " >
+          <div id="doc4" className="relative space-y-4 ">
             <div className="flex justify-center">
               <AWScert credly={dictionary.awsLinks.cloudPractitioner} src={AWSCLFC01} />
               <AWScert credly={dictionary.awsLinks.asocDeveloper} src={AWSDVA} />
