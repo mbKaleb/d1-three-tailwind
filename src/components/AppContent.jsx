@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react"
 import dictionary from "../dictionary.json"
 import ContentContainer from "./ContentContainer"
+
 import AWSCLFC01 from "/badgeIcons/AWS/AWSCLFC01.png"
 import AWSDVA from "/badgeIcons/AWS/AWSDVA.png"
+
+import pathfinderThumbnail from "/projectScreenshots/pathfinderThumbnail.png"
+
 import BackToTopBttn from "./small items/BackToTopBttn"
-import EmailBttn from "./small items/EmailBttn"
 import GithubBttn from "./small items/GithubBttn"
+import EmailBttn from "./small items/EmailBttn"
+import AWScert from "./small items/AWScert"
+import ProjectItem from "./small items/ProjectItem"
 
 const medText = " text-[2vh] "
 const lgText = " text-[2.5vh] "
@@ -18,21 +24,6 @@ function Item({ children, isActive, className }) {
   return (
     <div className={isActive ? activeClass : inactiveClass}>
       {children}
-    </div>
-  )
-}
-
-function AWScert({children, credly, src}) {
-  const onClickHandler = () => {
-    window.open(credly, '_blank')
-  }
-  const mouseOverHandle =() => {
-    console.log()
-  }
-
-  return(
-    <div className="text-white " onMouseOver={mouseOverHandle} >
-        <img src={src} alt="AWS asociate developer badge icon" width="100" height="100" onClick={onClickHandler} className=" p-1 hover:drop-shadow-[0_1px_7px_rgba(255_255_255_/_100%)] "  ></img>
     </div>
   )
 }
@@ -101,7 +92,8 @@ function AppContent(props) {
       <ContentContainer id="doc3" >{(isActive) => {
         return (
           <div id="doc3" className="relative space-y-4" >
-            <Item isActive={isActive} className="text-2xl" > Projects </Item>
+            <Item isActive={isActive} className={`${lgText}`} > Projects </Item>
+            <ProjectItem src={} link={dictionary.projectDeploymentLinks.pathfinder}  />
             <Item isActive={isActive} > Project 1 </Item>
             <Item isActive={isActive} > Project 2 </Item>
             <Item isActive={isActive} > Project 3 </Item>

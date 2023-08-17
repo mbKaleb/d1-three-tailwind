@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 /models
 /badgeIcons
+/projectScreenshots
 dist
 dist-ssr
 *.local
