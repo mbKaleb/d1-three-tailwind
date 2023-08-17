@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react"
 import dictionary from "../dictionary.json"
 import ContentContainer from "./ContentContainer"
-import {badgeIcons} from "../../public/badgeIcons/AWS"
+import AWSCLFC01 from "/badgeIcons/AWS/AWSCLFC01.png"
+import AWSDVA from "/badgeIcons/AWS/AWSDVA.png"
 
 const medText = " text-[2vh] "
 const lgText = " text-[2.5vh] "
 
 
 function Item({ children, isActive, className }) {
-  const activeClass = `${medText} font-light text-[#ccfcfc] [text-shadow:_0px_0px_30px_rgb(255_255_255_/_100%)]` +" "+ className
-  const inactiveClass = `${medText}  font-light text-gray-700 rounded` + " "+ className
+  const activeClass = `${medText} font-light text-[#ccfcfc] [text-shadow:_0px_0px_30px_rgb(255_255_255_/_100%)] select-none` +" "+ className
+  const inactiveClass = `${medText}  font-light text-gray-700 rounded select-none` + " "+ className
 
   return (
     <div className={isActive ? activeClass : inactiveClass}>
@@ -18,12 +19,17 @@ function Item({ children, isActive, className }) {
   )
 }
 
-function AWScert({children, credly}) {
-  console.log(children)
+function AWScert({children, credly, src}) {
+  const onClickHandler = () => {
+    window.open(credly, '_blank')
+  }
+  const mouseOverHandle =() => {
+    console.log()
+  }
 
   return(
-    <div className="text-white">
-      {children}
+    <div className="text-white " onMouseOver={mouseOverHandle} >
+        <img src={src} alt="AWS asociate developer badge icon" width="100" height="100" onClick={onClickHandler} className=" p-1 hover:drop-shadow-[0_1px_7px_rgba(255_255_255_/_100%)] "  ></img>
     </div>
   )
 }
@@ -54,7 +60,7 @@ function AppContent(props) {
   return (
     <div
       id="app-content"
-      className="w-[100vw] h-[100vh] absolute top-[1vh] z-[20]  overflow-y-auto snap-y snap-mandatory"
+      className="w-[100vw] h-[100vh] absolute top-[1vh] z-[20]  overflow-y-auto snap-y snap-mandatory select-none"
     >
       <ContentContainer>{() => { }}</ContentContainer>
       <ContentContainer id="doc1" >{function (isActive) {
@@ -96,10 +102,12 @@ function AppContent(props) {
       }}</ContentContainer>
       <ContentContainer id="doc4" >{(isActive) => {
         return (
-          <div id="doc4" className="relative space-y-4" >
-            <AWScert credly={dictionary.awsLinks.asocDeveloper} src="" />
-            {/* <AWScert credly={dictionary.awsLinks.cloudPractitioner}  > Test </AWScert> */}
-            <Item isActive={isActive} > CERTIFICATIONS </Item>
+          <div id="doc4" className="relative space-y-4 " >
+            <div className="flex justify-center">
+              <AWScert credly={dictionary.awsLinks.asocDeveloper} src={AWSDVA} />
+              <AWScert credly={dictionary.awsLinks.cloudPractitioner} src={AWSCLFC01} />
+            </div>
+            <Item isActive={isActive} className={'w-[100vw] text-center'} > CERTIFICATIONS </Item>
           </div>
         )
       }}</ContentContainer>
