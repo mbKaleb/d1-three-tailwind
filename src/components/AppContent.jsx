@@ -42,7 +42,7 @@ function AppContent(props) {
   return (
     <div
       id="app-content"
-      className="w-[100vw] h-[100vh] bg- absolute top-0 z-[20] outline overflow-y-auto snap-y snap-mandatory"
+      className="w-[100vw] h-[100vh] absolute top-[1vh] z-[20]  overflow-y-auto snap-y snap-mandatory"
     >
       <ContentContainer>{() => { }}</ContentContainer>
       <ContentContainer id="doc1" >{function (isActive) {
@@ -85,13 +85,13 @@ function AppContent(props) {
       <ContentContainer id="doc4" >{(isActive) => {
         return (
           <div id="doc4" className="relative space-y-4" >
-            <Item isActive={isActive} > Item </Item>
+            <Item isActive={isActive} > CERTIFICATIONS </Item>
           </div>
         )
       }}</ContentContainer>
 
     {
-      Array(xtraContainers).fill().map(()=> {return (<ContentContainer>{() => { }}</ContentContainer>)})
+      Array(xtraContainers).fill().map(()=> {return (<ContentContainer />)})
     }
     </div>
   )

@@ -8,7 +8,7 @@ function wait2seconds(){
   })
 }
 
-function ContentContainer({children, id}) {
+function ContentContainer({children=()=>{}, id}) {
   const [isPageActive, setIsPageActive] = useState(false)
   let parentElement = document.getElementById(id)
   
