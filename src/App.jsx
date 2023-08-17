@@ -16,13 +16,16 @@ function App() {
     useEffect(() => {
       setElementState(APP_CONTENT_ELEMENT)
     }, [APP_CONTENT_ELEMENT])
+  if (screen.width < window.innerWidth){
+    
+  }
 
 
   return (
     <div>
       <FullHeader />
-      {/* <AppContent appContext={elementState} />
-      <ModelsCanvas appContext={elementState} /> */}
+      <AppContent appContext={elementState} />
+      <ModelsCanvas appContext={elementState} />
     </div>
   );
 }

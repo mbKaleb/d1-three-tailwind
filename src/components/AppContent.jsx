@@ -33,13 +33,17 @@ function Item({ children, isActive, className }) {
 // }
 
 function AppContent(props) {
+  
+  
+  
   const {appContext} = {...props}
   const [xtraContainers, setXtraContainers] = useState(1)
   const [boundingInstanceState, setBoundingInstance] = useState(appContext)
-
+  
   useEffect(() => {
     //Mount Event Listeners
     if (appContext){
+      const width = screen.width;
       let boundingInstance
       appContext.addEventListener('scroll', function(){
         boundingInstance = appContext.lastChild.getBoundingClientRect()
