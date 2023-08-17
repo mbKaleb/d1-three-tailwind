@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
+import dictionary from "../dictionary.json"
 import ContentContainer from "./ContentContainer"
+import {badgeIcons} from "../../public/badgeIcons/AWS"
 
 const medText = " text-[2vh] "
 const lgText = " text-[2.5vh] "
@@ -11,6 +13,16 @@ function Item({ children, isActive, className }) {
 
   return (
     <div className={isActive ? activeClass : inactiveClass}>
+      {children}
+    </div>
+  )
+}
+
+function AWScert({children, credly}) {
+  console.log(children)
+
+  return(
+    <div className="text-white">
       {children}
     </div>
   )
@@ -85,6 +97,8 @@ function AppContent(props) {
       <ContentContainer id="doc4" >{(isActive) => {
         return (
           <div id="doc4" className="relative space-y-4" >
+            <AWScert credly={dictionary.awsLinks.asocDeveloper} src="" />
+            {/* <AWScert credly={dictionary.awsLinks.cloudPractitioner}  > Test </AWScert> */}
             <Item isActive={isActive} > CERTIFICATIONS </Item>
           </div>
         )
