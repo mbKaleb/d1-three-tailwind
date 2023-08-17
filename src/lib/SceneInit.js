@@ -39,7 +39,7 @@ export default class SceneInit {
 
     // NOTE: Dev options
     this.devCamera = new devCamera(2);
-    this.devControls = true;
+    this.devControls = false;
     this.devStats = false;
 
     // NOTE: Core components to initialize Three.js app.
