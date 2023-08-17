@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 export default function BackToTopBttn(props) {
     const { context, bdc } = props
     const [styleClass, setStyleClass] = useState("fixed display:none")
-    const active = "fixed bottom-5 outline outline-gray-100 m-2 p-1 bg-gray-900 rounded-sm drop-shadow hover:drop-shadow-[0_1px_15px_rgba(255_255_255_/_50%)]";
+    const active = "fixed left-5 bottom-5 outline outline-gray-100 m-2 p-1 bg-gray-900 rounded-sm drop-shadow hover:drop-shadow-[0_1px_15px_rgba(255_255_255_/_50%)]";
     const inactive = "fixed display:none";
 
     
