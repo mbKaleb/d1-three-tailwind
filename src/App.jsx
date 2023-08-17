@@ -21,8 +21,8 @@ function App() {
   return (
     <div>
       <FullHeader />
-      <AppContent appContext={elementState} />
-      <ModelsCanvas appContext={elementState} />
+      {/* <AppContent appContext={elementState} />
+      <ModelsCanvas appContext={elementState} /> */}
     </div>
   );
 }

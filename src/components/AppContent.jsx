@@ -13,7 +13,7 @@ import EmailBttn from "./small items/EmailBttn"
 import AWScert from "./small items/AWScert"
 import ProjectItem from "./small items/ProjectItem"
 
-const medText = " text-[1.9vh] "
+const medText = " text-[1.6vh] "
 const lgText = " text-[2.7vh] mb-4"
 
 
