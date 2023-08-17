@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 models
-badgeIcons
+/badgeIcons
 dist
 dist-ssr
 *.local
