@@ -122,7 +122,8 @@ function ModelsCanvas(props) {
 
     }
 
-    const mainScene = new SceneInit('myThreeJsCanvas');
+    
+    const mainScene = new SceneInit('myThreeJsCanvas', appContext);
     mainScene.initialize();
     mainScene.animate();
 

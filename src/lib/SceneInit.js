@@ -41,6 +41,11 @@ export default class SceneInit {
     this.width = undefined;
     this.height = undefined;
 
+    if (appContext){
+      this.width = appContext.offsetWidth
+      this.height = appContext.offsetHeight
+    }
+
     // NOTE: Dev options
     this.devCamera = new devCamera(2);
     this.devControls = false;
