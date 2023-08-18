@@ -17,7 +17,7 @@ function App() {
       setElementState(APP_CONTENT_ELEMENT)
     }, [APP_CONTENT_ELEMENT])
   if (screen.width < window.innerWidth){
-    
+
   }
 
 
@@ -25,7 +25,7 @@ function App() {
     <div>
       <FullHeader />
       <AppContent appContext={elementState} />
-      <ModelsCanvas appContext={elementState} />
+      {/* <ModelsCanvas appContext={elementState} /> */}
     </div>
   );
 }
