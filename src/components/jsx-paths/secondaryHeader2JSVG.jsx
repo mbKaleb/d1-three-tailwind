@@ -2,8 +2,8 @@ const aspect = 710/1024
 const widthVal = 350
 
 const heightVal = (widthVal*aspect)
-let devWidth = (screen.width)
-let devHeight = screen.height
+let devWidth = (window.innerWidth)
+let devHeight = window.innerHeight
 
 export const secondaryHeader2JSVG = 
 <svg id="eoqIrAQxDFR1" width="100%" className="fixed top-0 "  viewBox={`0 0 ${devWidth} ${devHeight}`} shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
