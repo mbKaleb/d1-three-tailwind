@@ -22,7 +22,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className='bg-gray-500'>
       <FullHeader />
       <AppContent appContext={elementState} />
       {/* <ModelsCanvas appContext={elementState} /> */}
