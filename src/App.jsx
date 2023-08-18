@@ -24,7 +24,7 @@ function App() {
 
 
   return (
-    <div className='w-[100vw]' id='wrapper'>
+    <div id='wrapper'>
       <FullHeader />
       <AppContent appContext={elementState} />
       <ModelsCanvas appContext={elementState} parentElement={PARENT_ELEMENT} />

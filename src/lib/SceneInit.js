@@ -108,7 +108,7 @@ export default class SceneInit {
     this.primaryComposer = new EffectComposer(this.renderer)
     this.primaryComposer.addPass( new RenderPass( this.scene, this.camera))
     this.primaryComposer.addPass( new UnrealBloomPass( 
-      new THREE.Vector2(window.innerWidth,window.innerHeight),
+      new THREE.Vector2(this.width,this.height),
       1.4,
       0.1,
       0.1
@@ -116,13 +116,13 @@ export default class SceneInit {
     this.secondaryComposer = new EffectComposer(this.renderer)
     this.secondaryComposer.addPass( new RenderPass( this.scene, this.camera))
     this.secondaryComposer.addPass( new UnrealBloomPass( 
-      new THREE.Vector2(window.innerWidth,window.innerHeight),
+      new THREE.Vector2(this.width,this.height),
       0.24,
       0,
       0
     ))
 
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.width,this.height);
     document.body.appendChild(this.renderer.domElement);
 
     this.clock = new THREE.Clock();
@@ -182,8 +182,8 @@ export default class SceneInit {
   }
 
   onWindowResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.width,this.height);
   }
 }

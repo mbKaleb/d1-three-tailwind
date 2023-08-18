@@ -45,7 +45,7 @@ function ModelsCanvas(props) {
       //Handle Scroll Bar
       if (appContext){
         scrollValue = appContext.children[0].getBoundingClientRect().top // Get distance from top of document, will be negative
-        currScrollPos = (Math.abs(scrollValue) / (window.innerHeight/windowAdjustment))
+        currScrollPos = (Math.abs(scrollValue) / (parentElement.offsetHeight/windowAdjustment))
         scrollPosition = currScrollPos/25
       }
 
