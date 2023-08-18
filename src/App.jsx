@@ -16,16 +16,18 @@ function App() {
     useEffect(() => {
       setElementState(APP_CONTENT_ELEMENT)
     }, [APP_CONTENT_ELEMENT])
+
+    let PARENT_ELEMENT = document.getElementById("wrapper");
   if (screen.width < window.innerWidth){
 
   }
 
 
   return (
-    <div className='w-[100vw]'>
+    <div className='w-[100vw]' id='wrapper'>
       <FullHeader />
       <AppContent appContext={elementState} />
-      <ModelsCanvas appContext={elementState} />
+      <ModelsCanvas appContext={elementState} parentElement={PARENT_ELEMENT} />
     </div>
   );
 }

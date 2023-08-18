@@ -45,6 +45,7 @@ export default class SceneInit {
       this.width = appContext.offsetWidth
       this.height = appContext.offsetHeight
     }
+    console.log('appContext', appContext)
 
     // NOTE: Dev options
     this.devCamera = new devCamera(2);
@@ -154,9 +155,9 @@ export default class SceneInit {
   }
 
   animate() {
-    if (this.whichComposer === "primary"){ this.primaryComposer.render()}
-    else if (this.whichComposer === "secondary") {this.secondaryComposer.render()};
-    window.requestAnimationFrame(this.animate.bind(this));
+      if (this.whichComposer === "primary"){ this.primaryComposer.render()}
+      else if (this.whichComposer === "secondary") {this.secondaryComposer.render()};
+      window.requestAnimationFrame(this.animate.bind(this));
   }
 
   toggleLights(){

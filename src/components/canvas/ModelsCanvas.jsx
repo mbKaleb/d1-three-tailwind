@@ -25,7 +25,7 @@ const getY = (scroll, ITEM_ID) => {
 
 
 function ModelsCanvas(props) {
-  const {appContext} = {...props}
+  const {appContext, parentElement} = {...props}
   
   const glftLoader = new GLTFLoader();
 
@@ -35,7 +35,6 @@ function ModelsCanvas(props) {
   let loadedOneManLJ;
   
   useEffect(() => {
-    
     let currScrollPos = 0
     let scrollValue = 0
     let scrollPosition
@@ -122,58 +121,61 @@ function ModelsCanvas(props) {
 
     }
 
-    
-    const mainScene = new SceneInit('myThreeJsCanvas', appContext);
-    mainScene.initialize();
-    mainScene.animate();
-
-    // TRON DISK 
-    glftLoader.load(tronDisk3, (gltfScene) => {
-      let scale = 6; let position = gltfScene.scene.position; let rotation = gltfScene.scene.rotation
-      gltfScene.scene.scale.set(scale, scale, scale);
-      loadedTronDisk = gltfScene;
-
-      position.x = -50; position.z = -100;
-      rotation.x = 1.5; rotation.z = 1.5
-      mainScene.scene.add(gltfScene.scene);
-    });
-
-    // 3MAN LIGHT JET
-    glftLoader.load(threeManLJ, (gltfScene) => {
-      let scale = 0.08; let position = gltfScene.scene.position;
-      gltfScene.scene.scale.set(scale,scale,scale);
-      loadedthreeManLJ = gltfScene;
+    let mainScene
+    if (parentElement){
+      mainScene = new SceneInit('myThreeJsCanvas', parentElement);
+      mainScene.initialize();
+      mainScene.animate();
       
-      position.y = 39; position.x = -75; position.z = -5
-      mainScene.scene.add(gltfScene.scene);
-    });
-
-    // LIGHT CYCLE
-    glftLoader.load(tron_light_cycle, (gltfScene) => {
-      let scale = 0.008; let position = gltfScene.scene.position
-      gltfScene.scene.scale.set(scale,scale,scale);
-      loadedLightCycle = gltfScene;
-  
-      position.y = -0.8; position.x =  -51; position.z = 78
-      mainScene.scene.add(gltfScene.scene);
-    });
-
-    // OM LIGHT JET
-    glftLoader.load(one_man_light_jet, (gltfScene) => {
-      let scale = 0.0035; let position = gltfScene.scene.position; let rotation = gltfScene.scene.rotation
-      gltfScene.scene.scale.set(scale,scale,scale);
-      loadedOneManLJ = gltfScene;
+      // TRON DISK 
+      glftLoader.load(tronDisk3, (gltfScene) => {
+        let scale = 6; let position = gltfScene.scene.position; let rotation = gltfScene.scene.rotation
+        gltfScene.scene.scale.set(scale, scale, scale);
+        loadedTronDisk = gltfScene;
+        
+        position.x = -50; position.z = -100;
+        rotation.x = 1.5; rotation.z = 1.5
+        mainScene.scene.add(gltfScene.scene);
+      });
       
-      position.y = -2.5; position.x =  -51; position.z = 78
-      rotation.x = - 5; rotation.z = - 1.3
-      mainScene.scene.add(gltfScene.scene);
-    });
-
-    const animate = () => {
-      if (loadedTronDisk) { basicRotation(loadedTronDisk) };
-      requestAnimationFrame(animate);
-    };
-    animate();
+      // 3MAN LIGHT JET
+      glftLoader.load(threeManLJ, (gltfScene) => {
+        let scale = 0.08; let position = gltfScene.scene.position;
+        gltfScene.scene.scale.set(scale,scale,scale);
+        loadedthreeManLJ = gltfScene;
+        
+        position.y = 39; position.x = -75; position.z = -5
+        mainScene.scene.add(gltfScene.scene);
+      });
+      
+      // LIGHT CYCLE
+      glftLoader.load(tron_light_cycle, (gltfScene) => {
+        let scale = 0.008; let position = gltfScene.scene.position
+        gltfScene.scene.scale.set(scale,scale,scale);
+        loadedLightCycle = gltfScene;
+        
+        position.y = -0.8; position.x =  -51; position.z = 78
+        mainScene.scene.add(gltfScene.scene);
+      });
+      
+      // OM LIGHT JET
+      glftLoader.load(one_man_light_jet, (gltfScene) => {
+        let scale = 0.0035; let position = gltfScene.scene.position; let rotation = gltfScene.scene.rotation
+        gltfScene.scene.scale.set(scale,scale,scale);
+        loadedOneManLJ = gltfScene;
+        
+        position.y = -2.5; position.x =  -51; position.z = 78
+        rotation.x = - 5; rotation.z = - 1.3
+        mainScene.scene.add(gltfScene.scene);
+      });
+      
+      const animate = () => {
+        if (loadedTronDisk) { basicRotation(loadedTronDisk) };
+        requestAnimationFrame(animate);
+      };
+      
+      animate();
+    }
     
     if (appContext){
       appContext.onscroll = (e) => {
@@ -185,7 +187,7 @@ function ModelsCanvas(props) {
   
 
   return (
-    <div >
+    <div>
         <canvas className='mt-[1vh] z-10' id="myThreeJsCanvas"/>
     </div>
   )
