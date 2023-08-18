@@ -35,7 +35,11 @@ class devCamera {
 
 export default class SceneInit {
 
-  constructor(canvasId) {
+  constructor(canvasId, appContext) {
+
+
+    this.width = undefined;
+    this.height = undefined;
 
     // NOTE: Dev options
     this.devCamera = new devCamera(2);

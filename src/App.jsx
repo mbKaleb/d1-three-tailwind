@@ -22,10 +22,10 @@ function App() {
 
 
   return (
-    <div className='bg-gray-500'>
+    <div className='w-[100vw]'>
       <FullHeader />
       <AppContent appContext={elementState} />
-      {/* <ModelsCanvas appContext={elementState} /> */}
+      <ModelsCanvas appContext={elementState} />
     </div>
   );
 }
