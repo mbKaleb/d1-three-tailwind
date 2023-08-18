@@ -1,11 +1,12 @@
 const aspect = 710/1024
 const widthVal = 350
+
 const heightVal = (widthVal*aspect)
-let devWidth = screen.width
+let devWidth = (screen.width)
 let devHeight = screen.height
 
 export const secondaryHeader2JSVG = 
-<svg id="eoqIrAQxDFR1" width="100%"  viewBox={`0 0 ${devWidth} ${devHeight}`} shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+<svg id="eoqIrAQxDFR1" width="100%" className="fixed top-0 "  viewBox={`0 0 ${devWidth} ${devHeight}`} shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
     
     <defs >
         <pattern id="img2" patternUnits="userSpaceOnUse" width={widthVal-7} height={heightVal -2}>
@@ -16,9 +17,9 @@ export const secondaryHeader2JSVG =
             />
         </pattern>
     </defs>
-    <g transform="translate(-15)">
-        <g transform="translate(80.341331 442.379608)">
-            <path d="M-80.341297,100l-.000026-30C123.761074,70,600,70,600,70v-70h740.084374v70h680.160225v27.620407" transform="translate(-.585926 0)" fill="url(#img2)" stroke="#fff" strokeWidth="3"/>
+    <g transform="translate(60, -20)">
+        <g transform="translate(0)">
+            <path d="M-80.341297,100l-.000026-30C123.761074,70,600,70,600,70v-70h740.084374v70h680.160225v27.620407" transform="translate(0)" fill="url(#img2)" stroke="#fff" strokeWidth="3"/>
             <path d="M-8.759393,-952.993614v659.665697l60.846762,38.988965v584.834448L-8.759393,369.484461v659.665638l-65.65904.00003-3.467344-972.523512v-56.81813-952.802076q69.126383-.000049,69.126383-.000025Z" transform="matrix(0 0.686287-1.059459 0 1010.001038 151.072403)" fill="url(#img2)" stroke="#fff" strokeWidth="4"/>
             {/* <path d="" fill="url(#img2)" stroke="#fff" stroke-width="4"/> */}
         </g>
