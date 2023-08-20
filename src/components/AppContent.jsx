@@ -95,11 +95,13 @@ function AppContent(props) {
       }}</ContentContainer>
       <ContentContainer id="doc3" >{(isActive) => {
         return (
-          <div id="doc3" className="relative ml-[10vw]" >
+        <div className="ml-[49vw]">
             <Item isActive={isActive} className={`${lgText}`} > Projects </Item>
-            <Item isActive={isActive} > Pathfinder Visualizer </Item>
-            <ProjectItem src={pathfinderThumbnail} link={dictionary.projectDeploymentLinks.pathfinder}  />
+          <div id="doc3" className="relative ml-[1vw] w-[50vw]" >
+                <Item isActive={isActive} > Pathfinder Visualizer </Item>
+                <ProjectItem src={pathfinderThumbnail} link={dictionary.projectDeploymentLinks.pathfinder}  />
           </div>
+        </div>
         )
       }}</ContentContainer>
       <ContentContainer id="doc4" >{(isActive) => {

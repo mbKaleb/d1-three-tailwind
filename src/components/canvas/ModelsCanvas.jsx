@@ -188,7 +188,7 @@ function ModelsCanvas(props) {
 
   return (
     <div>
-        <canvas className='mt-[1vh] z-10' id="myThreeJsCanvas"/>
+        <canvas className=' z-10' id="myThreeJsCanvas"/>
     </div>
   )
 }
