@@ -19,7 +19,8 @@ function ContentContainer({children=()=>{}, id}) {
   
   let observer = new IntersectionObserver(function(entries) {
     if(entries[0].isIntersecting === true) {
-      setPage()
+      setPage();
+
     } else {
       null
     }
