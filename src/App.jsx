@@ -23,6 +23,8 @@ function App() {
   }
 
 
+
+  
   return (
     <div id='wrapper' className='h-[100vh]'>
       <FullHeader />
