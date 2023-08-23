@@ -83,7 +83,7 @@ export default class SceneInit {
 
     this.camera = new THREE.PerspectiveCamera(
       this.fov,
-      window.innerWidth / window.innerHeight,
+      this.width / this.height,
       this.nearPlane,
       this.farPlane
     );

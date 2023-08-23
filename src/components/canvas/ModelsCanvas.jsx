@@ -63,8 +63,8 @@ function ModelsCanvas(props) {
           const actualRadians = getRotation(actualX, actualY)
           return (
             {
-              "graphCords": {"y":actualY,"x":actualX},
-              "rotation": actualRadians
+              "graphCords": {"y":actualY,"x":actualX},      
+                "rotation": actualRadians
             }
             )
         }
@@ -74,6 +74,7 @@ function ModelsCanvas(props) {
         rotation: tronDiskRotation,
         graphCords: tronDiskGC
       } = handleModel(loadedTronDisk, 1, +3.7);
+      console.log(tronDiskGC)
       loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.217);
 
       const {
@@ -173,7 +174,6 @@ function ModelsCanvas(props) {
         if (loadedTronDisk) { basicRotation(loadedTronDisk) };
         requestAnimationFrame(animate);
       };
-      
       animate();
     }
     
