@@ -16,15 +16,11 @@ function App() {
     useEffect(() => {
       setElementState(APP_CONTENT_ELEMENT)
     }, [APP_CONTENT_ELEMENT])
-
     let PARENT_ELEMENT = document.getElementById("wrapper");
+
   if (screen.width < window.innerWidth){
 
   }
-
-
-
-  
   return (
     <div id='wrapper' className='h-[100vh]'>
       <FullHeader />
