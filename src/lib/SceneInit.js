@@ -40,6 +40,7 @@ export default class SceneInit {
 
     this.width = undefined;
     this.height = undefined;
+    this.appContext = document.getElementById("wrapper");
 
     if (appContext){
       this.width = appContext.offsetWidth
@@ -182,6 +183,8 @@ export default class SceneInit {
   }
 
   onWindowResize() {
+    this.width = this.appContext.offsetWidth;
+    this.height = this.appContext.offsetHeight;
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(this.width,this.height);
