@@ -74,7 +74,6 @@ function ModelsCanvas(props) {
         rotation: tronDiskRotation,
         graphCords: tronDiskGC
       } = handleModel(loadedTronDisk, 1, +3.7);
-      console.log(tronDiskGC)
       loadedTronDisk.scene.rotation.z = -(tronDiskRotation -0.217);
 
       const {
