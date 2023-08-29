@@ -4,8 +4,9 @@ const heightVal = (widthVal * aspectR)
 
 export const primaryHeaderJSVG =
     <svg
+    name="NAME PLATE BG"
         id="exsMwFdczRV1"
-        viewBox="0 0 1920 480"
+        viewBox="0 0 1920 200"
     >
         <defs>
             <pattern

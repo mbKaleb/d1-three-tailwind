@@ -1,6 +1,9 @@
 export const kalebfrankenJSVG = 
-<svg width="100%"  xmlns="http://www.w3.org/2000/svg" 
-viewBox="-200 -5 900 150"  
+<svg 
+  name="NEON NAME SIGN"
+  width="100%"
+  xmlns="http://www.w3.org/2000/svg" 
+  viewBox="-710 -5 1920 450"
 >
 <defs>
   <filter id="editing-neon" x="-100%" y="-100%" width="300%" height="300%">

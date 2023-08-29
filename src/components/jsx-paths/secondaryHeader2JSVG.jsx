@@ -7,7 +7,7 @@ let devHeight = window.innerHeight
 
 export const secondaryHeader2JSVG = 
 <svg id="eoqIrAQxDFR1" width="100%" 
-viewBox="0 25 1920 480"
+viewBox="6 25 1920 480"
 className="fixed relative"
  shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
     
