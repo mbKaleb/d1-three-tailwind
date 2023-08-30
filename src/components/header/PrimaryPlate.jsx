@@ -3,13 +3,14 @@ import { primaryHeaderJSVG } from "../jsx-paths/primaryHeaderJSVG"
 
 export default function PrimaryPlate({children}) {
   return (
-    <div className="fixed  flex justify-center">
-      <div className="absolute w-[92vw] min-w-[900px]" >
-          {primaryHeaderJSVG}
+    <div className="">
+      <div className="fixed top-0 outline">
+        {primaryHeaderJSVG}
       </div>
-      <div className=" absolute w-[92vw] min-w-[900px]">
+      <div className="fixed top-0 outline">
         {children}
       </div>
+      
     </div>
   )
 }

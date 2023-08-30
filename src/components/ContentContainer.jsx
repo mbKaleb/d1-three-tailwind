@@ -11,6 +11,7 @@ function wait2seconds(){
 function ContentContainer({children=()=>{}, id}) {
   const [isPageActive, setIsPageActive] = useState(false)
   let parentElement = document.getElementById(id)
+  let h = window.innerHeight
   
   async function setPage(){
     const res = await wait2seconds()
@@ -24,7 +25,7 @@ function ContentContainer({children=()=>{}, id}) {
     } else {
       null
     }
-  }, { threshold: [1] });
+  }, { threshold: [0.7] });
   
   useEffect(() => {
     if (parentElement !== null){
@@ -32,10 +33,11 @@ function ContentContainer({children=()=>{}, id}) {
     }
   }, [parentElement])
 
-  return (
-    <div className="h-[100vh] w-[100vw] mt-[35.4vh]  snap-start snap-always flex justify-center items-center">
+
+  return ( 
+    <div className={`h-[100vh] w-screen mt-[35.4vh] snap-start snap-always flex justify-center pt-[${h/2.5}px]  `}>
         {children(isPageActive)}
     </div>
   )
-}
+} //"h-[100vh] w-[100vw] mt-[35.4vh]  snap-start snap-always flex justify-center items-center"
 export default ContentContainer

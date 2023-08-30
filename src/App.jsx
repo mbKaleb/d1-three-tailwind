@@ -23,7 +23,7 @@ function App() {
   }
   return (
     <div id='wrapper' className='h-[100vh]'>
-      <FullHeader />
+      {/* <FullHeader /> */}
       <AppContent appContext={elementState} />
       <ModelsCanvas appContext={elementState} parentElement={PARENT_ELEMENT} />
     </div>

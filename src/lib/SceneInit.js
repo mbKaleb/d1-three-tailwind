@@ -4,6 +4,10 @@ import Stats from 'three/examples/jsm/libs/stats.module';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+			import { ColorCorrectionShader } from 'three/addons/shaders/ColorCorrectionShader.js';
+			import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
+
 
 class devCamera {
   constructor(type) {
@@ -43,10 +47,9 @@ export default class SceneInit {
     this.appContext = document.getElementById("wrapper");
 
     if (appContext){
-      this.width = appContext.offsetWidth
-      this.height = appContext.offsetHeight
+      this.width = window.innerWidth
+      this.height = window.innerHeight
     }
-    console.log('appContext', appContext)
 
     // NOTE: Dev options
     this.devCamera = new devCamera(2);
@@ -96,24 +99,29 @@ export default class SceneInit {
     }
 
     // NOTE: Specify a canvas which is already created in the HTML.
-    const canvas = document.getElementById(this.canvasId);
-    this.renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      // NOTE: Anti-aliasing smooths out the edges.
-      alpha: false,
-      antialias: true,
-      
-      
-    });
+    this.canvas = document.getElementById(this.canvasId);
 
-    this.primaryComposer = new EffectComposer(this.renderer)
-    this.primaryComposer.addPass( new RenderPass( this.scene, this.camera))
-    this.primaryComposer.addPass( new UnrealBloomPass( 
-      new THREE.Vector2(this.width,this.height),
-      1.4,
-      0.1,
-      0.1
-    ))
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true});
+      this.renderer.setPixelRatio( window.devicePixelRatio );
+      this.renderer.setSize( this.width, this.height );
+      // this.renderer.autoClear = false;
+    
+    this.primaryComposer = new EffectComposer( this.renderer )
+      this.renderPass = new RenderPass( this.scene, this.camera)
+        // this.renderPass.clearColor = new THREE.Color(0,0,0);
+        // this.renderPass.clearAlpha = 0;
+      this.bloomPass = new UnrealBloomPass(new THREE.Vector2(this.width,this.height),1.4,0.1,0.1)
+      // this.fxaaPass = new ShaderPass( FXAAShader );
+      //   this.pixelRatio = this.render.getPixelRatio;
+      //   this.fxaaPass.material.uniforms[ 'resolution' ].value.x = 1 / ( this.width * this.pixelRatio );
+      //   this.fxaaPass.material.uniforms[ 'resolution' ].value.y = 1 / ( this.height * this.pixelRatio );
+      // this.colorCorrectionPass = new ShaderPass( ColorCorrectionShader );
+
+      this.primaryComposer.addPass( this.renderPass )
+      this.primaryComposer.addPass( this.bloomPass )
+      // this.primaryComposer.addPass( this.colorCorrectionPass )
+      // this.primaryComposer.addPass( this.fxaaPass )
+    
     this.secondaryComposer = new EffectComposer(this.renderer)
     this.secondaryComposer.addPass( new RenderPass( this.scene, this.camera))
     this.secondaryComposer.addPass( new UnrealBloomPass( 
@@ -123,8 +131,6 @@ export default class SceneInit {
       0
     ))
 
-    this.renderer.setSize(this.width,this.height);
-    document.body.appendChild(this.renderer.domElement);
 
     this.clock = new THREE.Clock();
     if ( this.devControls === true ) this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -178,7 +184,7 @@ export default class SceneInit {
   }
 
   render() {
-    this.uniforms.u_time.value += this.clock.getDelta();
+    // this.uniforms.u_time.value += this.clock.getDelta();
     this.renderer.render(this.scene, this.camera);
   }
 

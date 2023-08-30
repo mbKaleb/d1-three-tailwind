@@ -40,7 +40,7 @@ function ModelsCanvas(props) {
     let scrollPosition
     const windowAdjustment = 1845
     
-    const handleCamera = (ev) => { //Doesnt work lol
+    const handleCamera = () => { //Doesnt work lol
 
       //Handle Scroll Bar
       if (appContext){
@@ -104,8 +104,8 @@ function ModelsCanvas(props) {
         rotation: CycleRotation,
         graphCords: CycleGC
       } = handleModel(loadedLightCycle, 3, 4);
-      loadedLightCycle.scene.position.x = CycleGC.x -54
-      loadedLightCycle.scene.rotation.y = (CycleRotation -0.3)
+      loadedLightCycle.scene.position.x = CycleGC.x -53
+      loadedLightCycle.scene.rotation.y = (CycleRotation *0.9)-0.4
       if (CycleGC.x > 30 && CycleGC.y > -25){
         mainScene.turnOffLights()
       } else { mainScene.turnOnLights() }
@@ -154,7 +154,7 @@ function ModelsCanvas(props) {
         gltfScene.scene.scale.set(scale,scale,scale);
         loadedLightCycle = gltfScene;
         
-        position.y = -0.8; position.x =  -51; position.z = 78
+        position.y = -2; position.x =  -51; position.z = 70
         mainScene.scene.add(gltfScene.scene);
       });
       
@@ -177,8 +177,8 @@ function ModelsCanvas(props) {
     }
     
     if (appContext){
-      appContext.onscroll = (e) => {
-        handleCamera(e)
+      appContext.onscroll = () => {
+        handleCamera()
       };
     }
   }, [appContext]);
@@ -186,8 +186,8 @@ function ModelsCanvas(props) {
   
 
   return (
-    <div>
-        <canvas className=' z-10' id="myThreeJsCanvas"/>
+    <div >
+        <canvas className="z-10" id="myThreeJsCanvas"/>
     </div>
   )
 }

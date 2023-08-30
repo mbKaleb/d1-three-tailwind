@@ -83,8 +83,8 @@ function AppContent(props) {
       </ContentContainer>
       <ContentContainer id="doc2" >{function (isActive) {
         return (
-          <div id="doc2" className="relative space-y-4" >
-            <Item isActive={isActive} className={`mt-[13vh] pb-4 ${lgText} `}>Top Skills </Item>
+          <div id="doc2" className="relative space-y-4 p-4" >
+            <Item isActive={isActive} className={`-mt-[calc(17vh-5vw)] pb-4 ${lgText} `}>Top Skills </Item>
             <Item isActive={isActive} className="pl-4 py-[2px]" > Cloud Native Software Development -  Written Technical Communication - Interest in market research </Item>
             <Item isActive={isActive} className="pl-4" > SDLC: Agile Development, Branch Based Development  </Item>
             <Item isActive={isActive} className="pl-4" > CLOUD PROVIDERS: AWS, Azure, Google Cloud, Vercel </Item>
@@ -96,9 +96,9 @@ function AppContent(props) {
       }}</ContentContainer>
       <ContentContainer id="doc3" >{(isActive) => {
         return (
-        <div className="ml-[49vw]">
-            <Item isActive={isActive} className={`${lgText}`} > Projects </Item>
-          <div id="doc3" className="relative ml-[1vw] w-[50vw]" >
+        <div className="ml-[48vw] m-6">
+            <Item isActive={isActive} className={`${lgText} -mt-[calc(17vh-5vw)] flex items-center`} > Projects </Item>
+            <div id="doc3" className="relative ml-[1vw] w-[50vw]" >
                 <Item isActive={isActive} > Pathfinder Visualizer </Item>
                 <ProjectItem src={pathfinderThumbnail} link={dictionary.projectDeploymentLinks.pathfinder}  />
           </div>

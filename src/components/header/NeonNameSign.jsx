@@ -2,7 +2,7 @@ import { kalebfrankenJSVG } from "../jsx-paths/kalebfrankenJSVG"
 
 export default function NeonNameSign() {
   return (
-    <div className="relative" >
+    <div className="top-0 fixed w-full relative" >
       {kalebfrankenJSVG}
     </div>
   )
