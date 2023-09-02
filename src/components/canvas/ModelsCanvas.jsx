@@ -154,7 +154,7 @@ function ModelsCanvas(props) {
         gltfScene.scene.scale.set(scale,scale,scale);
         loadedLightCycle = gltfScene;
         
-        position.y = -2; position.x =  -51; position.z = 70
+        position.y = -1.3; position.x =  -51; position.z = 70
         mainScene.scene.add(gltfScene.scene);
       });
       
