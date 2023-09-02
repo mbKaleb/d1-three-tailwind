@@ -8,9 +8,7 @@ import AppContent from './components/AppContent';
 import ModelsCanvas from './components/canvas/ModelsCanvas';
 import FullHeader from './components/header/FullHeader';
 
-
 function App() {
-
   const [elementState, setElementState] = useState()
     let APP_CONTENT_ELEMENT = document.getElementById("app-content");
     useEffect(() => {
@@ -21,13 +19,13 @@ function App() {
   if (screen.width < window.innerWidth){
 
   }
+
   return (
-    <div id='wrapper' className='h-[100vh]'>
-      {/* <FullHeader /> */}
+    <div id='wrapper' className={`h-[100vh]`}>
+      <FullHeader />
       <AppContent appContext={elementState} />
       <ModelsCanvas appContext={elementState} parentElement={PARENT_ELEMENT} />
     </div>
   );
 }
-
 export default App;

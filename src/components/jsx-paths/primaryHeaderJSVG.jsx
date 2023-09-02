@@ -6,7 +6,8 @@ export const primaryHeaderJSVG =
     <svg
     name="NAME PLATE BG"
         id="exsMwFdczRV1"
-        className="w-[666px] fixed relative left-0"
+        className="absolute relative flex justify-center left-0 w-full"
+        viewBox="0 0 1920 180"
     >
         <defs>
             <pattern
@@ -22,11 +23,13 @@ export const primaryHeaderJSVG =
             </pattern>
         </defs>
 
+
         <path
             d="M665.703811,161.081138h69.845608l34.922805-39.604563h381.405423l34.335328,39.604563h68.670651l34.335326-39.555899-.000001-57.637463-34.335326-34.56144h-589.179814l-34.922793,34.56144v57.637463l34.922793,39.555899Z"
-            transform="translate(-627 -24)"
+            transform="translate(0 -23)"
             fill="url(#img1)"
             stroke="#FFF"
             strokeWidth="3"
         />
+
     </svg>

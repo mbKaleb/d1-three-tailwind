@@ -34,9 +34,6 @@ function Item({ children, isActive, className }) {
 
 
 function AppContent(props) {
-  
-  
-  
   const {appContext} = {...props}
   const [xtraContainers, setXtraContainers] = useState(1)
   const [boundingInstanceState, setBoundingInstance] = useState(appContext)
@@ -61,7 +58,7 @@ function AppContent(props) {
   return (
     <div
       id="app-content"
-      className="w-[100vw] h-[100vh] absolute top-[1vh] z-[20]  overflow-y-auto snap-y snap-mandatory select-none"
+      className="w-[100vw] h-[100vh] absolute top-[0vh] z-[20]  overflow-y-auto snap-y snap-mandatory select-none"
       >
       <ContentContainer>{() => { }}</ContentContainer>
       <BackToTopBttn context={appContext} />
