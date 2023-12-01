@@ -6,6 +6,7 @@ import AWSCLFC01 from "/badgeIcons/AWS/AWSCLFC01.png"
 import AWSDVA from "/badgeIcons/AWS/AWSDVA.png"
 
 import pathfinderThumbnail from "/projectScreenshots/pathfinderThumbnail.png"
+import secondOrderPhysicsTN from "/projectScreenshots/secondOrderPhysicsTN.png"
 
 import BackToTopBttn from "./small items/BackToTopBttn"
 import GithubBttn from "./small items/GithubBttn"
@@ -90,10 +91,12 @@ function AppContent(props) {
       <ContentContainer id="doc3" >{(isActive) => {
         return (
         <div className="ml-[48vw] m-6">
-            <Item isActive={isActive} className={`${lgText} -mt-[calc(17vh-5vw)] flex items-center`} > Projects </Item>
+            <Item isActive={isActive} className={`${lgText} -mt-[calc(30vh-6vw)] flex items-center`} > Projects </Item>
             <div id="doc3" className="relative ml-[1vw] w-[50vw]" >
-                <Item isActive={isActive} > Pathfinder Visualizer </Item>
+                <Item isActive={isActive} className={'pt-2'} > Pathfinder Visualizer </Item>
                 <ProjectItem src={pathfinderThumbnail} link={dictionary.projectDeploymentLinks.pathfinder}  />
+                <Item isActive={isActive} className={'pt-2'} > Second Order Physics Demo </Item>
+                <ProjectItem src={secondOrderPhysicsTN} link={dictionary.projectDeploymentLinks.secondOrderPhysicsDemo}  />
           </div>
         </div>
         )

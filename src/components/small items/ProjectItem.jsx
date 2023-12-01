@@ -6,8 +6,8 @@ function ProjectItem({src, link }) {
     
 
     return (
-        <div className="rounded w-fit text-white hover:[cursor:pointer] " onClick={onClickHandler} >
-            <img src={src} alt="non" width="260" height="200"  className=" rounded p-4 hover:drop-shadow-[0_1px_7px_rgba(255_255_255_/_60%)] "  ></img>
+        <div className="rounded w-fit h-fit text-white hover:[cursor:pointer] " onClick={onClickHandler} >
+            <img src={src} alt="non"  className="h-[20vh] rounded p-4 hover:drop-shadow-[0_1px_7px_rgba(255_255_255_/_60%)] "  ></img>
         </div>
     )
 }
