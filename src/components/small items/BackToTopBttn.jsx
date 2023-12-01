@@ -10,7 +10,7 @@ export default function BackToTopBttn(props) {
     useEffect(() => {
         if (context){
             context.addEventListener('scroll', ()=> {
-                if ((context.children[0].getBoundingClientRect().top) < -7000 ) {
+                if ((context.children[0].getBoundingClientRect().top) < -4990 ) {
                         setStyleClass(prevState=>{
                             if (prevState === inactive){
                                 return active

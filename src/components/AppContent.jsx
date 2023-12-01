@@ -13,13 +13,14 @@ import EmailBttn from "./small items/EmailBttn"
 import AWScert from "./small items/AWScert"
 import ProjectItem from "./small items/ProjectItem"
 
-const medText = " text-[1.6vh] "
-const lgText = " text-[2.7vh] mb-4"
+const smallText = "text-[1.6vh]"
+const medText = " text-[2.3vh] "
+const lgText = " text-[3.4vh] mb-0"
 
 
 function Item({ children, isActive, className }) {
-  const activeClass = `${medText} font-light text-[#ccfcfc] [text-shadow:_0px_0px_30px_rgb(255_255_255_/_100%)] select-none` +" "+ className
-  const inactiveClass = `${medText}  font-light text-gray-700 rounded select-none` + " "+ className
+  const activeClass = `${smallText} font-light text-[#ccfcfc]  select-none` +" "+ className //[text-shadow:_0px_0px_30px_rgb(255_255_255_/_100%)];
+  const inactiveClass = `${smallText}  font-light text-gray-700 rounded select-none` + " "+ className
 
   return (
     <div className={isActive ? activeClass : inactiveClass}>
@@ -27,11 +28,6 @@ function Item({ children, isActive, className }) {
     </div>
   )
 }
-
-// function sleep(ms) {
-//   return new Promise(resolve => setTimeout(resolve, ms));
-// }
-
 
 function AppContent(props) {
   const {appContext} = {...props}
@@ -81,8 +77,8 @@ function AppContent(props) {
       <ContentContainer id="doc2" >{function (isActive) {
         return (
           <div id="doc2" className="relative space-y-4 p-4" >
-            <Item isActive={isActive} className={`-mt-[calc(17vh-5vw)] pb-4 ${lgText} `}>Top Skills </Item>
-            <Item isActive={isActive} className="pl-4 py-[2px]" > Cloud Native Software Development -  Written Technical Communication - Interest in market research </Item>
+            <Item isActive={isActive} className={`-mt-[calc(17vh-5vw)] ${lgText} `}>Top Skills </Item>
+            <Item isActive={isActive} className={`pl-2 py-[0px] ${medText} pb-[1vh]`} > Cloud Native Software Development -  Written Technical Communication - Interest in market research </Item>
             <Item isActive={isActive} className="pl-4" > SDLC: Agile Development, Branch Based Development  </Item>
             <Item isActive={isActive} className="pl-4" > CLOUD PROVIDERS: AWS, Azure, Google Cloud, Vercel </Item>
             <Item isActive={isActive} className="pl-4" > LANG: Javascript (TS), Rust, Ruby, C++  </Item>
@@ -104,12 +100,12 @@ function AppContent(props) {
       }}</ContentContainer>
       <ContentContainer id="doc4" >{(isActive) => {
         return (
-          <div id="doc4" className="relative space-y-4 ">
+          <div id="doc4" className="relative space-y-4 -mt-[calc(17vh-5vw)]">
+            <Item isActive={isActive} className={'w-[100vw] text-center' + lgText} > Certifications </Item>
             <div className="flex justify-center">
               <AWScert credly={dictionary.awsLinks.cloudPractitioner} src={AWSCLFC01} />
               <AWScert credly={dictionary.awsLinks.asocDeveloper} src={AWSDVA} />
             </div>
-            <Item isActive={isActive} className={'w-[100vw] text-center'} > CERTIFICATIONS </Item>
           </div>
         )
       }}</ContentContainer>

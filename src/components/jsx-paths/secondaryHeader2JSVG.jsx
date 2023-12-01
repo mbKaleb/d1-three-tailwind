@@ -8,8 +8,9 @@ let devHeight = window.innerHeight
 export const secondaryHeader2JSVG = 
 <svg id="eoqIrAQxDFR1" width="100%" 
 viewBox="6 25 1920 480"
-className="fixed relative"
- shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+className="fixed relative
+"
+shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
     
     <defs >
         <pattern id="img2" patternUnits="userSpaceOnUse" width={widthVal-7} height={heightVal -2}>
