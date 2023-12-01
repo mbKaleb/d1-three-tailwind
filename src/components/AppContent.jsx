@@ -77,14 +77,14 @@ function AppContent(props) {
       </ContentContainer>
       <ContentContainer id="doc2" >{function (isActive) {
         return (
-          <div id="doc2" className="relative space-y-4 p-4" >
-            <Item isActive={isActive} className={`-mt-[calc(17vh-5vw)] ${lgText} `}>Top Skills </Item>
-            <Item isActive={isActive} className={`pl-2 py-[0px] ${medText} pb-[1vh]`} > Cloud Native Software Development -  Written Technical Communication - Interest in market research </Item>
-            <Item isActive={isActive} className="pl-4" > SDLC: Agile Development, Branch Based Development  </Item>
-            <Item isActive={isActive} className="pl-4" > CLOUD PROVIDERS: AWS, Azure, Google Cloud, Vercel </Item>
-            <Item isActive={isActive} className="pl-4" > LANG: Javascript (TS), Rust, Ruby, C++  </Item>
-            <Item isActive={isActive} className="pl-4" > FRAMEWORKS: React </Item>
-            <Item isActive={isActive} className="pl-4" > TOOLS: Git, Docker  </Item>
+          <div id="doc2" className="-mt-[calc(17vh-5vw)] relative space-y-4 p-4 bg-black bg-opacity-50 text-white h-fit rounded [box-shadow:_10px_10px_10px_rgba(0_0_0_/_0.5)]" >
+              <Item isActive={isActive} className={` ${lgText} `}>Top Skills </Item>
+              <Item isActive={isActive} className={`pl-2 py-[0px] ${medText} pb-[1vh]`} > Cloud Native Software Development -  Written Technical Communication - Interest in market research </Item>
+              <Item isActive={isActive} className="pl-4" > SDLC: Agile Development, Branch Based Development  </Item>
+              <Item isActive={isActive} className="pl-4" > CLOUD PROVIDERS: AWS, Azure, Google Cloud, Vercel </Item>
+              <Item isActive={isActive} className="pl-4" > LANG: Javascript (TS), Rust, Ruby, C++  </Item>
+              <Item isActive={isActive} className="pl-4" > FRAMEWORKS: React </Item>
+              <Item isActive={isActive} className="pl-4" > TOOLS: Git, Docker  </Item>
           </div>
         )
       }}</ContentContainer>
@@ -101,7 +101,7 @@ function AppContent(props) {
         </div>
         )
       }}</ContentContainer>
-      <ContentContainer id="doc4" >{(isActive) => {
+      <ContentContainer id="doc4"  >{(isActive) => {
         return (
           <div id="doc4" className="relative space-y-4 -mt-[calc(17vh-5vw)]">
             <Item isActive={isActive} className={'w-[100vw] text-center' + lgText} > Certifications </Item>
