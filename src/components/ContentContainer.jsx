@@ -35,7 +35,7 @@ function ContentContainer({children=()=>{}, id}) {
 
 
   return ( 
-    <div className={`h-[100vh] w-screen mt-[35.4vh] px-[min(64px,8vw)] snap-start snap-always flex justify-center pt-[${h/2.5}px]  `}>
+    <div className={`h-[100vh] w-screen mt-[35.4vh] px-[min(64px,5vw)] snap-start snap-always flex justify-center pt-[${h/2.5}px]  `}>
         {children(isPageActive)}
     </div>
   )
