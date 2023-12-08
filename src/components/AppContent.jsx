@@ -68,7 +68,7 @@ function AppContent(props) {
             id="doc1"
           >
             <Item isActive={isActive} className={`pb-2 ${lgText}`}> Software Developer </Item>
-            <Item isActive={isActive} className={"pl-12 font-semibold"} > Kaleb Franken </Item>
+            <Item isActive={isActive} className={"pl-12"} > Kaleb Franken </Item>
             <Item isActive={isActive} className="pl-12" > BS in Computer Science </Item>
             <Item isActive={isActive} className="pl-12" > Favorite Color: #0FFFFA </Item>
           </div>
