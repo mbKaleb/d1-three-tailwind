@@ -16,7 +16,7 @@ import ProjectItem from "./small items/ProjectItem"
 
 const smallText = "text-[1.6vh]"
 const medText = " text-[2.3vh] "
-const lgText = " text-[3.4vh] mb-0"
+const lgText = " text-[3.4vh]"
 
 
 function Item({ children, isActive, className }) {
@@ -68,9 +68,9 @@ function AppContent(props) {
             id="doc1"
           >
             <Item isActive={isActive} className={`pb-2 ${lgText}`}> Software Developer </Item>
-            <Item isActive={isActive} className="pl-4" > Kaleb Franken </Item>
-            <Item isActive={isActive} className="pl-4" > BS in Computer Science </Item>
-            <Item isActive={isActive} className="pl-4" > Favorite Color: #0FFFFA </Item>
+            <Item isActive={isActive} className={"pl-12 font-semibold"} > Kaleb Franken </Item>
+            <Item isActive={isActive} className="pl-12" > BS in Computer Science </Item>
+            <Item isActive={isActive} className="pl-12" > Favorite Color: #0FFFFA </Item>
           </div>
         )
       }}
