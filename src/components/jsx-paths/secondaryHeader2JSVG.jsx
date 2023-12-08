@@ -1,3 +1,4 @@
+import dictionary from "../../dictionary.json"
 const aspect = 710/1024
 const widthVal = 350
 
@@ -13,6 +14,36 @@ className="fixed relative
 shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
     
     <defs >
+
+    <filter id="glow" x="-1%" width="300%" height="300%">
+                <feFlood flood-color={dictionary.headerLineColors.topLshapedLines} result="flood"></feFlood>
+                <feFlood flood-color={dictionary.headerLineColors.bottomAndCenterLines} result="flood2"></feFlood>
+
+                <feComposite operator="in" in="flood" in2="SourceAlpha" result="color"></feComposite>
+                <feComposite operator="in" in="flood2" in2="SourceAlpha" result="color2"></feComposite>
+
+                <feMorphology operator="dilate" radius="4" in="color" result="dilate"></feMorphology>
+
+                <feGaussianBlur stdDeviation="2" in="color" result="blur1"></feGaussianBlur>
+                <feGaussianBlur stdDeviation="2" in="color" result="blur2"></feGaussianBlur>
+
+                <feGaussianBlur stdDeviation="3" in="SourceAlpha" result="blur3"></feGaussianBlur>
+                <feGaussianBlur stdDeviation="8" in="dilate" result="blur4"></feGaussianBlur>
+
+                <feConvolveMatrix in="color2" result="conv" order="3,3" divisor="1" kernelMatrix="1 1 1  1 1 1  1 1 1"></feConvolveMatrix>
+
+                <feMerge>
+                    <feMergeNode in="blur1"></feMergeNode>
+                    <feMergeNode in="blur2"></feMergeNode>
+                    <feMergeNode in="blur4"></feMergeNode>
+                    <feMergeNode in="blur3"></feMergeNode>
+                    <feMergeNode in="blur3"></feMergeNode>
+                    <feMergeNode in="blur3"></feMergeNode>
+                    <feMergeNode in="blur3"></feMergeNode>
+                    <feMergeNode in="conv"></feMergeNode>
+                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+            </filter>
         <pattern id="img2" patternUnits="userSpaceOnUse" width={widthVal-7} height={heightVal -2}>
             <image 
             x="0" y="0" width={widthVal} height={heightVal}
@@ -23,9 +54,19 @@ shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
     </defs>
     <g transform="translate(0, 0)">
         <g transform="translate(0)">
-            <path d="M-80.341297,100l-.000026-30C123.761074,70,600,70,600,70v-70h740.084374v70h680.160225v27.620407" transform="translate(0)" fill="url(#img2)" stroke="#fff" strokeWidth="3"/>
-            <path d="M-8.759393,-952.993614v659.665697l60.846762,38.988965v584.834448L-8.759393,369.484461v659.665638l-65.65904.00003-3.467344-972.523512v-56.81813-952.802076q69.126383-.000049,69.126383-.000025Z" transform="matrix(0 0.686287-1.059459 0 1010.001038 151.072403)" fill="url(#img2)" stroke="#fff" strokeWidth="4"/>
-            {/* <path d="" fill="url(#img2)" stroke="#fff" stroke-width="4"/> */}
+            <path 
+                d="M-80.341297,100l-.000026-30C123.761074,70,600,70,600,70v-70h740.084374v70h680.160225v27.620407" transform="translate(0)" 
+                fill="url(#img2)"
+                filter="url(#glow)"
+                stroke={dictionary.headerLineColors.topLshapedLines}
+                strokeWidth="2"
+            />
+            <path 
+                    d="M-8.759393,-952.993614v659.665697l60.846762,38.988965v584.834448L-8.759393,369.484461v659.665638l-65.65904.00003-3.467344-972.523512v-56.81813-952.802076q69.126383-.000049,69.126383-.000025Z" transform="matrix(0 0.686287-1.059459 0 1010.001038 151.072403)"
+                    fill="url(#img2)"
+                    filter="url(#glow)"
+                    stroke={dictionary.headerLineColors.bottomAndCenterLines}
+                    strokeWidth="2" />
         </g>
     </g>
 </svg>

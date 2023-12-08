@@ -8,6 +8,11 @@
         "pathfinder": "https://pathfinder-visualizer-one.vercel.app",
         "tronBackground": "",
         "secondOrderPhysicsDemo": "https://second-order-physics-demo.vercel.app/"
+    },
+    "headerLineColors": {
+        "mainPlateTrim": "#0ffffa",
+        "topLshapedLines": "#DF740C",
+        "bottomAndCenterLines": "#DF740C"
     }
 
 }

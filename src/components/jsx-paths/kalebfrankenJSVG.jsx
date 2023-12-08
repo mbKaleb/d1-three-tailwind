@@ -12,7 +12,7 @@ export const kalebfrankenJSVG =
     <feComposite operator="in" in="flood" in2="SourceAlpha" result="color"></feComposite>
     <feFlood flood-color="#00afff" result="flood2"></feFlood><feComposite operator="in" in="flood2" in2="SourceAlpha" result="color2"></feComposite>
     <feMorphology operator="dilate" radius="2" in="color" result="dilate"></feMorphology>
-    <feGaussianBlur stdDeviation="6" in="color" result="blur1"></feGaussianBlur>
+    <feGaussianBlur stdDeviation="1" in="color" result="blur1"></feGaussianBlur>
     <feGaussianBlur stdDeviation="2.5" in="color" result="blur2"></feGaussianBlur>
     <feGaussianBlur stdDeviation="1" in="SourceAlpha" result="blur3"></feGaussianBlur>
     <feGaussianBlur stdDeviation="6" in="dilate" result="blur4"></feGaussianBlur>
