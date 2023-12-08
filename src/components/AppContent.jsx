@@ -79,7 +79,7 @@ function AppContent(props) {
         return (
           <div id="doc2" className="-mt-[calc(17vh-5vw)] relative space-y-4 p-4 bg-black bg-opacity-50 text-white h-fit rounded [box-shadow:_10px_10px_10px_rgba(0_0_0_/_0.5)]" >
               <Item isActive={isActive} className={` ${lgText} `}>Top Skills </Item>
-              <Item isActive={isActive} className={`pl-2 py-[0px] ${medText} pb-[1vh]`} > Cloud Native Software Development -  Written Technical Communication - Interest in market research </Item>
+              <Item isActive={isActive} className={`pl-2 py-[0px] ${medText} pb-[1vh]`} > Cloud Native Software Development </Item>
               <Item isActive={isActive} className="pl-4" > SDLC: Agile Development, Branch Based Development  </Item>
               <Item isActive={isActive} className="pl-4" > CLOUD PROVIDERS: AWS, Azure, Google Cloud, Vercel </Item>
               <Item isActive={isActive} className="pl-4" > LANG: Javascript (TS), Rust, Ruby, C++  </Item>
