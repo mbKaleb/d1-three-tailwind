@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import "@fontsource/orbitron"; // Defaults to weight 400
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
