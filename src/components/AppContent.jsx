@@ -5,9 +5,6 @@ import ContentContainer from "./ContentContainer"
 import AWSCLFC01 from "/badgeIcons/AWS/AWSCLFC01.png"
 import AWSDVA from "/badgeIcons/AWS/AWSDVA.png"
 
-import pathfinderThumbnail from "/projectScreenshots/pathfinderThumbnail.png"
-import secondOrderPhysicsTN from "/projectScreenshots/secondOrderPhysicsTN.png"
-import codexThumbnail from "/projectScreenshots/codexThumbnail.jpeg"
 
 import BackToTopBttn from "./small items/BackToTopBttn"
 import GithubBttn from "./small items/GithubBttn"
@@ -96,15 +93,15 @@ function AppContent(props) {
             <div id="doc3" className="relative ml-[1vw] flex flex-wrap gap-4" >
                 <div className="flex flex-col items-center">
                   <Item isActive={isActive} className={'pt-2'} > C++ Codex & Learning Tools </Item>
-                  <ProjectItem src={codexThumbnail} link={dictionary.projectDeploymentLinks.codex}  />
+                  <ProjectItem link={dictionary.projectDeploymentLinks.codex}  />
                 </div>
                 <div className="flex flex-col items-center">
                   <Item isActive={isActive} className={'pt-2'} > Pathfinder Visualizer </Item>
-                  <ProjectItem src={pathfinderThumbnail} link={dictionary.projectDeploymentLinks.pathfinder}  />
+                  <ProjectItem link={dictionary.projectDeploymentLinks.pathfinder}  />
                 </div>
                 <div className="flex flex-col items-center">
                   <Item isActive={isActive} className={'pt-2'} > Second Order Physics Demo </Item>
-                  <ProjectItem src={secondOrderPhysicsTN} link={dictionary.projectDeploymentLinks.secondOrderPhysicsDemo}  />
+                  <ProjectItem link={dictionary.projectDeploymentLinks.secondOrderPhysicsDemo}  />
                 </div>
           </div>
         </div>
