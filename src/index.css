@@ -15,6 +15,9 @@ code {
 }
 
 
+#app-content::-webkit-scrollbar { display: none; }
+#app-content { scrollbar-width: none; }
+
 #myThreeJsCanvas {
   width: 100vw;
   outline: white;
