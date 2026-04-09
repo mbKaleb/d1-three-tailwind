@@ -128,48 +128,43 @@ function ModelsCanvas(props) {
       mainScene.initialize();
       mainScene.animate();
       
-      // TRON DISK 
-      glftLoader.load(tronDisk3, (gltfScene) => {
-        let scale = 6; let position = gltfScene.scene.position; let rotation = gltfScene.scene.rotation
-        gltfScene.scene.scale.set(scale, scale, scale);
-        loadedTronDisk = gltfScene;
-        
-        position.x = -50; position.z = -100;
-        rotation.x = 1.5; rotation.z = 1.5
-        mainScene.scene.add(gltfScene.scene);
-      });
-      
+      const loadModel = (path) => new Promise((resolve) => glftLoader.load(path, resolve))
+
+      const [disk, threeJet, cycle, oneJet] = await Promise.all([
+        loadModel(tronDisk3),
+        loadModel(threeManLJ),
+        loadModel(tron_light_cycle),
+        loadModel(one_man_light_jet),
+      ])
+
+      // TRON DISK
+      disk.scene.scale.set(6, 6, 6);
+      disk.scene.position.set(-50, 0, -100);
+      disk.scene.rotation.set(1.5, 0, 1.5);
+      loadedTronDisk = disk;
+      mainScene.scene.add(disk.scene);
+
       // 3MAN LIGHT JET
-      glftLoader.load(threeManLJ, (gltfScene) => {
-        let scale = 0.08; let position = gltfScene.scene.position;
-        gltfScene.scene.scale.set(scale,scale,scale);
-        loadedthreeManLJ = gltfScene;
-        
-        position.y = 39; position.x = -75; position.z = -5
-        mainScene.scene.add(gltfScene.scene);
-      });
-      
+      threeJet.scene.scale.set(0.08, 0.08, 0.08);
+      threeJet.scene.position.set(-75, 39, -5);
+      loadedthreeManLJ = threeJet;
+      mainScene.scene.add(threeJet.scene);
+
       // LIGHT CYCLE
-      glftLoader.load(tron_light_cycle, (gltfScene) => {
-        let scale = 0.008; let position = gltfScene.scene.position
-        gltfScene.scene.scale.set(scale,scale,scale);
-        loadedLightCycle = gltfScene;
-        
-        position.y = -1.3; position.x =  -51; position.z = 70
-        mainScene.scene.add(gltfScene.scene);
-      });
-      
+      cycle.scene.scale.set(0.008, 0.008, 0.008);
+      cycle.scene.position.set(-51, -1.3, 70);
+      loadedLightCycle = cycle;
+      mainScene.scene.add(cycle.scene);
+
       // OM LIGHT JET
-      glftLoader.load(one_man_light_jet, (gltfScene) => {
-        let scale = 0.0035; let position = gltfScene.scene.position; let rotation = gltfScene.scene.rotation
-        gltfScene.scene.scale.set(scale,scale,scale);
-        loadedOneManLJ = gltfScene;
-        
-        position.y = -2.5; position.x =  -51; position.z = 78
-        rotation.x = - 5; rotation.z = - 1.3
-        mainScene.scene.add(gltfScene.scene);
-      });
-      
+      oneJet.scene.scale.set(0.0035, 0.0035, 0.0035);
+      oneJet.scene.position.set(-51, -2.5, 78);
+      oneJet.scene.rotation.set(-5, 0, -1.3);
+      loadedOneManLJ = oneJet;
+      mainScene.scene.add(oneJet.scene);
+
+      handleCamera();
+
       const animate = () => {
         if (loadedTronDisk) { basicRotation(loadedTronDisk) };
         requestAnimationFrame(animate);
