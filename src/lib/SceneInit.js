@@ -1,12 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import Stats from 'three/examples/jsm/libs/stats.module';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
-			import { ColorCorrectionShader } from 'three/addons/shaders/ColorCorrectionShader.js';
-			import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
 
 
 class devCamera {

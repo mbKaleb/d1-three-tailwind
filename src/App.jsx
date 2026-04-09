@@ -1,30 +1,40 @@
 import { useState, useEffect } from 'react';
-import "@fontsource/orbitron"; // Defaults to weight 400
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import "@fontsource/orbitron";
 
-const tronDisk = "/models/tron_disk/scene.gltf";
 import AppContent from './components/AppContent';
-import ModelsCanvas from './components/canvas/ModelsCanvas';
 import FullHeader from './components/header/FullHeader';
 
 function App() {
   const [elementState, setElementState] = useState()
-    let APP_CONTENT_ELEMENT = document.getElementById("app-content");
-    useEffect(() => {
-      setElementState(APP_CONTENT_ELEMENT)
-    }, [APP_CONTENT_ELEMENT])
-    let PARENT_ELEMENT = document.getElementById("wrapper");
+  const [ModelsCanvas, setModelsCanvas] = useState(null)
+  const [sceneLoaded, setSceneLoaded] = useState(false)
 
-  if (screen.width < window.innerWidth){
+  let APP_CONTENT_ELEMENT = document.getElementById("app-content");
+  useEffect(() => {
+    setElementState(APP_CONTENT_ELEMENT)
+  }, [APP_CONTENT_ELEMENT])
 
-  }
+  useEffect(() => {
+    import('./components/canvas/ModelsCanvas').then((mod) => {
+      setModelsCanvas(() => mod.default)
+      setSceneLoaded(true)
+    })
+  }, [])
+
+  let PARENT_ELEMENT = document.getElementById("wrapper");
 
   return (
     <div id='wrapper' className="h-[100vh]" >
+      {!sceneLoaded && (
+        <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center">
+          <span style={{ fontFamily: 'Orbitron, sans-serif' }} className="text-[#0FFFFA] text-sm tracking-widest animate-pulse">
+            LOADING
+          </span>
+        </div>
+      )}
       <FullHeader />
       <AppContent appContext={elementState} />
-      <ModelsCanvas appContext={elementState} parentElement={PARENT_ELEMENT} />
+      {ModelsCanvas && <ModelsCanvas appContext={elementState} parentElement={PARENT_ELEMENT} />}
     </div>
   );
 }

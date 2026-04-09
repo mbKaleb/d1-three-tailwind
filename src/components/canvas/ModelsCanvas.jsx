@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import SceneInit from '../../lib/SceneInit';
 import { solveQE, getRotation } from '../../lib/utils';
 
 const tron_light_cycle = "/models/tron_moto_sdc/scene.gltf";
@@ -27,14 +25,12 @@ const getY = (scroll, ITEM_ID) => {
 function ModelsCanvas(props) {
   const {appContext, parentElement} = {...props}
   
-  const glftLoader = new GLTFLoader();
-
   let loadedTronDisk;
   let loadedthreeManLJ;
   let loadedLightCycle;
   let loadedOneManLJ;
-  
-  useEffect(() => {
+
+  useEffect(() => { (async () => {
     let currScrollPos = 0
     let scrollValue = 0
     let scrollPosition
@@ -123,6 +119,11 @@ function ModelsCanvas(props) {
 
     let mainScene
     if (parentElement){
+      const [{ default: SceneInit }, { GLTFLoader }] = await Promise.all([
+        import('../../lib/SceneInit'),
+        import('three/examples/jsm/loaders/GLTFLoader.js'),
+      ])
+      const glftLoader = new GLTFLoader()
       mainScene = new SceneInit('myThreeJsCanvas', parentElement);
       mainScene.initialize();
       mainScene.animate();
@@ -181,7 +182,7 @@ function ModelsCanvas(props) {
         handleCamera()
       };
     }
-  }, [appContext]);
+  })(); }, [appContext]);
   
   
 
